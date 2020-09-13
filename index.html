@@ -87,6 +87,51 @@
             return x < 0 ? -newNum : newNum
         };
         console.log(reverse(-123))
+
+        //第四题第一解
+        var myAtoi = function (str) {
+            let newStr = str.trim(),
+                firstStr = newStr[0],
+                number = firstStr
+            if (!isNaN(firstStr) || ((firstStr === '-' || firstStr === '+') && newStr.length > 1)) {
+                for (let i = 1; i <= newStr.length - 1; i++) {
+                    if (!isNaN(newStr[i]) && (newStr[i] !== ' ')) {
+                        number += newStr[i]
+                    } else {
+                        break
+                    }
+                }
+                if (number === "-" || number === "+") {
+                    return 0
+                }
+                number = Number(number)
+                if (number < Math.pow(-2, 31) || number > Math.pow(2, 31) - 1) {
+                    return number < Math.pow(-2, 31) ? Math.pow(-2, 31) : Math.pow(2, 31) - 1;
+                }
+                return number
+            } else {
+                return 0
+            }
+        }
+        console.log(myAtoi("42"))
+        //第四题第二解
+        var myAtoi = function (str) {
+            let number = parseInt(str)
+            if (isNaN(number)) {
+                return 0
+            }
+            if (number < Math.pow(-2, 31) || number > Math.pow(2, 31) - 1) {
+                return number < Math.pow(-2, 31) ? Math.pow(-2, 31) : Math.pow(2, 31) - 1;
+            }
+            return number
+        };
+        console.log(myAtoi("42"))
+        //第四题第三解
+        var myAtoi = (str) => {
+            let res = str.trim().match(/^(\-|\+)?\d+/g)
+            return res ? Math.max(Math.min(Number(res[0]), 2 ** 31 - 1), -(2 ** 31)) : 0
+        };
+        console.log(myAtoi("42"))
     </script>
 </body>
 
