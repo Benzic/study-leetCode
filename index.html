@@ -175,6 +175,97 @@
             return max
         };
         console.log(lengthOfLongestSubstring("anviaj"))
+        //第六题第一解
+        var isPalindrome = function (x) {
+            x = x + ""
+            if (x.length === 1) {
+                return true
+            }
+            let isOdd = x.length % 2 === 0
+            let halfLen = isOdd ? x.length / 2 : Math.floor(x.length / 2)
+            if (x.slice(0, halfLen) === x.slice(isOdd ? halfLen : halfLen + 1).split("").reverse().join("")) {
+                return true
+            } else {
+                return false
+            }
+        };
+        console.log(isPalindrome("121"))
+        //第六题第二解
+        var isPalindrome = function (x) {
+            x = x + ""
+            if (x.length === 1) {
+                return true
+            }
+            let flag = true
+            for (let i = 0; i < Math.floor(x.length / 2); i++) {
+                if ((i < x.length - 1 - i) && x[i] !== x[x.length - 1 - i]) {
+                    flag = false
+                }
+            }
+            return flag
+        };
+        console.log(isPalindrome("1221"))
+        //第六题第三解
+        var isPalindrome = function (x) {
+            if (x < 0 || (x % 10 === 0 && x !== 0)) {
+                return false
+            }
+            let newNum = 0;
+            while (x > newNum) {
+                newNum = newNum * 10 + x % 10
+                x = Math.floor(x / 10)
+            }
+            return x === newNum || x === Math.floor(newNum / 10)
+        };
+        console.log(isPalindrome(123212))
+        //第七题第一解
+        var longestPalindrome = function (s) {
+            if (s.length === 1) {
+                return s;
+            }
+            if (!s.length) {
+                return ""
+            }
+            let dp = [],
+                res = s[0]
+            for (let i = s.length - 1; i >= 0; i--) {
+                dp[i] = []
+                for (let j = i; j < s.length; j++) {
+                    if (j - i === 0) {
+                        dp[i][j] = true
+                    } else if (s[i] === s[j] && (j - i === 1)) {
+                        dp[i][j] = true
+                    } else if (s[i] === s[j] && dp[i + 1][j - 1]) {
+                        dp[i][j] = true
+                    }
+                    if (dp[i][j] && j - i + 1 > res.length) {
+                        res = s.slice(i, j + 1)
+                    }
+                }
+            }
+            return res
+        };
+        console.log(longestPalindrome("123212"))
+        //第七题第二解
+        var longestPalindrome = function (s) {
+            let result = s[0] || "";
+            for (let i = 0; i <= s.length - 1; i++) {
+                for (let j = 1; j <= 2; j++) {
+                    let left = i;
+                    right = i + j;
+                    while (left >= 0 && right < s.length && s[left] === s[right]) {
+                        left--;
+                        right++
+                    }
+                    let length = right - left - 1; //(right - 1) - (left + 1) + 1
+                    if (length > result.length) {
+                        result = s.substr(left + 1, length);
+                    }
+                }
+            }
+            return result
+        };
+        console.log(longestPalindrome("123212"))
     </script>
 </body>
 
