@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var romanToInt = function (s) {
+            let num = 0
+            for (let i = 0; i <= s.length - 1; i++) {
+
+                switch (s[i]) {
+                    case "I":
+                        if (s[i + 1] === "V" || s[i + 1] === "X") {
+                            num -= 1
+                        } else {
+                            num += 1;
+                        }
+                        break;
+                    case "V":
+                        num += 5;
+                        break;
+                    case "X":
+                        if (s[i + 1] === "L" || s[i + 1] === "C") {
+                            num -= 10
+                        } else {
+                            num += 10;
+                        }
+                        break;
+                    case "L":
+                        num += 50;
+                        break;
+                    case "C":
+                        if (s[i + 1] === "D" || s[i + 1] === "M") {
+                            num -= 100
+                        } else {
+                            num += 100;
+                        }
+                        break;
+                    case "D":
+                        num += 500;
+                        break;
+                    case "M":
+                        num += 1000;
+                        break
+                }
+            }
+            return num
+        };
+        console.log(romanToInt("IIIVVMM"))
+
+        var romanToInt = function (s) {
+            let map = {
+                    "I": 1,
+                    "V": 5,
+                    "X": 10,
+                    "L": 50,
+                    "C": 100,
+                    "D": 500,
+                    "M": 1000
+                },
+                sum = 0,
+                now = 0,
+                num = 0
+            for (let i = 0; i <= s.length - 1; i++) {
+                now = map[s[i]]
+                if (newNum < now) {
+                    sum -= newNum
+                } else {
+                    sum += newNum
+                }
+                newNum = now
+            }
+            sum += newNum
+            return sum
+        };
+        console.log(romanToInt("IIIVVMM"))
+    </script>
+</body>
+
+</html>
