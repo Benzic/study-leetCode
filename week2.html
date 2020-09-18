@@ -115,6 +115,85 @@
             return area
         }
         console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))
+        //最长的公共字符
+        var longestCommonPrefix = function (strs) {
+            if (!strs.length) return ""
+            let len = 0;
+            let has = true
+
+            function findStr(len) {
+                let str = strs[0].slice(0, len);
+                for (let i = 1; i <= strs.length - 1; i++) {
+                    if (strs[i].indexOf(str) !== 0) {
+                        has = false
+                        return has
+                    }
+                }
+                return has
+            }
+            while (has && len <= strs[0].length) {
+                len += 1
+                findStr(len)
+            }
+            return strs[0].slice(0, len - 1)
+        };
+        console.log(longestCommonPrefix(["f4f1", 'f23', 'f14']))
+
+        //Z字形转换
+        var convert = function (s, numRows) {
+            let rows = [];
+            let rowIndex = 0
+            let down = true
+            for (let i = 0; i <= s.length - 1; i++) {
+                !rows[rowIndex] && (rows[rowIndex] = "")
+                rows[rowIndex] += s[i]
+                rowIndex = down ? rowIndex + 1 : rowIndex - 1
+                if (rowIndex === numRows - 1) {
+                    down = false
+                } else if (rowIndex === 0) {
+                    down = true
+                }
+            }
+            return rows.join("")
+        };
+        console.log(convert("THISLEETCODEDOWN", 3))
+        //三树之和
+        var threeSum = function (nums) {
+            let array = []
+            nums.sort((a, b) => {
+                return a - b
+            })
+            if (nums[0] > 0) {
+                return array
+            }
+            for (let i = 0; i <= nums.length - 1; i++) {
+                let left = i + 1;
+                let right = nums.length - 1
+                if (nums[i] == nums[i - 1]) continue; // 去重
+                while (left < right) {
+                    let sum = nums[i] + nums[left] + nums[right]
+                    if (sum < 0) {
+                        left++
+                    }
+                    if (sum > 0) {
+                        right--
+                    }
+                    if (sum === 0) {
+                        array.push([nums[left], nums[right], nums[i]])
+                        while (left < right && nums[left] == nums[left + 1]) left++; // 去重
+                        while (left < right && nums[right] == nums[right - 1]) right--; // 去重
+                        left++;
+                        right--
+                    }
+                }
+            }
+            return array
+        };
+        console.log(threeSum([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        ]))
     </script>
 </body>
 
