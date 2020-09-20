@@ -79,7 +79,7 @@
             sum += num
             return sum
         };
-        console.log(romanToInt("MMMDDXLIV"))
+        console.log(romanToInt("MMMCCXLIVI"))
         //第二题第一解
         var maxArea = function (height) {
             let area = 0,
@@ -219,6 +219,8 @@
                         left++
                     }
                     if (sum - target === 0) {
+                        while (left < right && nums[left] == nums[left + 1]) left++; // 去重
+                        while (left < right && nums[right] == nums[right - 1]) right--; // 去重
                         return sum
                     }
                 }
@@ -228,90 +230,127 @@
         console.log(threeSum([1, 1, -1, -1, 3], -1))
         var intToRoman = function (num) {
             let str = ""
-            // while (num > 1) {
-            //     if ((num / 1000) > 1) {
-            //         console.log(num)
-            //         str += "M"
-            //         num = num - 1000
-            //     } else if ((num / 500) > 1) {
-            //         console.log(num)
-            //         str += "D"
-            //         num = num - 500
-            //     } else if ((num / 400) > 1) {
-            //         console.log(num)
-            //         str += "CD"
-            //         num = num - 400
-            //     } else if ((num / 900) > 1) {
-            //         str += "CM"
-            //         num = num - 900
-            //     } else if ((num / 100) > 1) {
-            //         str += "D"
-            //         num = num - 100
-            //     } else if ((num / 40) > 1) {
-            //         str += "XL"
-            //         num = num - 40
-            //     } else if ((num / 90) > 1) {
-            //         str += "XC"
-            //         num = num - 90
-            //     } else if ((num / 50) > 1) {
-            //         str += "L"
-            //         num = num - 50
-            //     } else if ((num / 10) > 1) {
-            //         str += "X"
-            //         num = num - 10
-            //     } else if ((num / 4) > 1) {
-            //         str += "IV"
-            //         num = num - 4
-            //     } else if ((num / 9) > 1) {
-            //         str += "IX"
-            //         num = num - 9
-            //     } else if ((num / 5) > 1) {
-            //         str += "V"
-            //         num = num - 5
-            //     } else if ((num / 1) === 1) {
-            //         str += "I"
-            //         num = num - 1
-            //     }
-            //     console.log(num)
-            // }
-            // console.log(str)
-            // switch (num) {
-            //     case "I":
-            //         if (s[i + 1] === "V" || s[i + 1] === "X") {
-            //             num -= 1
-            //         } else {
-            //             num += 1;
-            //         }
-            //         break;
-            //     case "V":
-            //         num += 5;
-            //         break;
-            //     case "X":
-            //         if (s[i + 1] === "L" || s[i + 1] === "C") {
-            //             num -= 10
-            //         } else {
-            //             num += 10;
-            //         }
-            //         break;
-            //     case "L":
-            //         num += 50;
-            //         break;
-            //     case "C":
-            //         if (s[i + 1] === "D" || s[i + 1] === "M") {
-            //             num -= 100
-            //         } else {
-            //             num += 100;
-            //         }
-            //         break;
-            //     case "D":
-            //         num += 500;
-            //         break;
-            //     case "M":
-            //         num += 1000;
-            //         break
-            // }
+            while (num >= 1) {
+                if ((num / 1000) >= 1) {
+                    console.log(num)
+                    str += "M"
+                    num = num - 1000
+                } else if ((num / 900) >= 1) {
+                    str += "CM"
+                    num = num - 900
+                } else if ((num / 500) >= 1) {
+                    console.log(num)
+                    str += "D"
+                    num = num - 500
+                } else if ((num / 400) >= 1) {
+                    console.log(num)
+                    str += "CD"
+                    num = num - 400
+                } else if ((num / 100) >= 1) {
+                    str += "C"
+                    num = num - 100
+                } else if ((num / 90) >= 1) {
+                    str += "XC"
+                    num = num - 90
+                } else if ((num / 50) >= 1) {
+                    str += "L"
+                    num = num - 50
+                } else if ((num / 40) >= 1) {
+                    str += "XL"
+                    num = num - 40
+                } else if ((num / 10) >= 1) {
+                    str += "X"
+                    num = num - 10
+                } else if ((num / 9) >= 1) {
+                    str += "IX"
+                    num = num - 9
+                } else if ((num / 5) >= 1) {
+                    str += "V"
+                    num = num - 5
+                } else if ((num / 4) >= 1) {
+                    str += "IV"
+                    num = num - 4
+                } else if ((num / 1) >= 1) {
+                    str += "I"
+                    num = num - 1
+                }
+            }
+            return str
         };
-        console.log(intToRoman(3245))
+        var intToRoman = function (num) {
+            let strArray = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"],
+                values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
+                str = "",
+                index = 0
+            while (index < strArray.length) {
+                while (num >= values[index]) {
+                    str += strArray[index]
+                    num = num - values[index]
+                }
+                index++
+            }
+            return str
+        };
+        console.log(intToRoman(9))
+        var isValid = function (s) {
+            let arr = []
+            if (s.length % 2 !== 0) {
+                return false
+            }
+            for (let i = 0; i <= s.length - 1; i++) {
+                switch (s[i]) {
+                    case "(":
+                    case "[":
+                    case "{":
+                        arr.push(s[i]);
+                        break;
+                    case ")":
+                        if (arr.pop() !== '(') return false
+                        break;
+                    case "]":
+                        if (arr.pop() !== '[') return false
+                        break;
+                    case "}":
+                        if (arr.pop() !== '{') return false
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return !arr.length
+        };
+        console.log(isValid("[[[]"))
+
+
+        var mergeTwoLists = function (l1, l2) {
+            if (l1 === null) {
+                return l2
+            } else if (l2 === null) {
+                return l1
+            } else if (l1.val < l2.val) {
+                l1.next = mergeTwoLists(l1, l2.next)
+                return l1
+            } else {
+                l2.next = mergeTwoLists(l1.next, l2)
+                return l2
+            }
+        };
+        var mergeTwoLists = function (l1, l2) {
+            let res = new ListNode();
+            let end = res;
+            while (l1 && l2) {
+                if (l1.val < l2.val) {
+                    end.next = l1;
+                    l1 = l1.next;
+                } else {
+                    end.next = l2;
+                    l2 = l2.next;
+                }
+                end = end.next;
+            }
+            end.next = l1 || l2;
+            return res.next;
+        };
     </script>
 </body>
 
