@@ -391,6 +391,72 @@
             return nums.length
         };
         console.log(removeDuplicates([1, 1, 2, 2, 3, 3, 4, 5, 6]))
+
+        var finStr = function (str, p) {
+            if (p.length > str.length) {
+                return []
+            }
+            let left = 0;
+            let right = 2;
+            let len = p.length;
+            let array = [];
+            const map = {};
+            for (let i = 0; i <= p.length - 1; i++) {
+                if (map[p[i]]) {
+                    map[p[i]]++
+                } else {
+                    map[p[i]] = 1
+                }
+            }
+            for (let i = 0; i <= p.length - 1; i++) {
+                if (map[str[i]] > 0) {
+                    map[str[i]]--
+                    len--
+                }
+            }
+            console.log(len, map)
+            while (right <= str.length - 1) {
+                if (map.hasOwnProperty(str[right])) {
+                    console.log(str[right])
+                    map[str[right]]--
+                    len--
+                }
+
+
+                console.log(len, str[left], str[right], left, right, str)
+                if (len === 0) {
+                    array.push(left)
+                }
+                right++
+                left++
+                if (map.hasOwnProperty(str[left - 1])) {
+                    map[str[left - 1]]++
+                    len++
+                }
+                console.log(len, map)
+            }
+            return array
+        }
+        console.log(finStr("abcfdefacdsda", "asd"))
+        var generateParenthesis = function (n) {
+            let array = [];
+            let str = "";
+
+            function generate(str, left, right) {
+                if (str.length === 2 * n) {
+                    array.push(str)
+                    return
+                }
+                if (left > 0) {
+                    generate(str + "(", left - 1, right)
+                }
+                if (right > left) {
+                    generate(str + ")", left, right - 1)
+                }
+            }
+            generate(str, n, n)
+            return array
+        };
     </script>
 </body>
 
