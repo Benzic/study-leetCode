@@ -476,6 +476,14 @@
             return array.join("")
         };
         console.log(multiply("999", '999'))
+        var mergeTrees = function (t1, t2) {
+            let array = []
+            return t1 || t2 ? {
+                val: (t1 && t1.val) + (t2 && t2.val),
+                left: mergeTrees((t1 && t1.left), (t2 && t2.left)),
+                right: mergeTrees((t1 && t1.right), (t2 && t2.right))
+            } : null
+        };
     </script>
 </body>
 
