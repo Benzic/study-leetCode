@@ -555,6 +555,15 @@
             console.log(120 % 9)
         };
         console.log(addDigits(18))
+        var trailingZeroes = function (n) {
+            let num = 0;
+            while (n >= 5) {
+                n = parseInt(n / 5)
+                num += n
+            }
+            return num
+        };
+        console.log(trailingZeroes(125))
     </script>
 </body>
 
