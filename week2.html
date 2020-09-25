@@ -267,6 +267,32 @@
                 }
             }
         };
+        var wordPattern = function (pattern, s) {
+            let array = s.split(" ");
+            if (pattern.length !== array.length) {
+                return false
+            }
+            for (let i = 0; i <= pattern.length - 1; i++) {
+                if (pattern.indexOf(pattern[i]) !== array.indexOf(array[i])) {
+                    return false
+                }
+            }
+            return true
+        };
+        var wordPattern = function (pattern, s) {
+            let map1 = {},
+                map2 = {}
+            let array = s.split(" ")
+            if (array.length !== pattern.length) {
+                return false
+            }
+            for (let i = 0; i <= pattern.length - 1; i++) {
+                if (!map1[pattern[i]]) map1[pattern[i]] = array[i]
+                if (!map2[array[i]]) map2[array[i]] = pattern[i]
+                if (map1[pattern[i]] !== array[i] || map2[array[i]] !== pattern[i]) return false
+            }
+            return true
+        };
         var isIsomorphic = function (s, t) {
             let map1 = {},
                 map2 = {}
