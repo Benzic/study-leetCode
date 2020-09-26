@@ -721,6 +721,26 @@
             // return index
         };
         console.log(removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2))
+
+        var removeNthFromEnd = function (head, n) {
+            let summay = new ListNode(0);
+            summay.next = head;
+            let left = summay;
+            let right = summay;
+            let offset = n + 1
+            while (offset--) {
+                right = right.next;
+                if (offset > 1 && right === null) {
+                    return summay.next
+                }
+            }
+            while (right) {
+                right = right.next;
+                left = left.next;
+            }
+            left.next = left.next.next
+            return summay.next
+        };
     </script>
 </body>
 
