@@ -790,6 +790,54 @@
             [".", ".", ".", "4", "1", "9", ".", ".", "5"],
             [".", ".", ".", ".", "8", ".", ".", "7", "9"]
         ]))
+        var isHappy = function (n) {
+            let slow = n,
+                fast = n;
+
+            function getSum(n) {
+                console.log(n)
+                let sum = 0
+                while (n !== 0) {
+                    const bit = n % 10
+                    sum += bit * bit
+                    n = parseInt(n / 10)
+                }
+                return sum
+            }
+            do {
+                slow = getSum(slow);
+                fast = getSum(getSum(fast))
+            } while (slow !== fast);
+            return slow === 1
+        };
+        console.log(isHappy(19))
+        var isHappy = function (n) {
+            let map = {}
+            let flag = false
+
+            function getSum(n) {
+                let sum = 0
+                while (n !== 0) {
+                    const bit = n % 10
+                    sum += bit * bit
+                    n = parseInt(n / 10)
+                }
+                if (sum === 1) {
+                    flag = true
+                    return true
+                }
+                if (map[sum]) {
+                    flag = false
+                    return false
+                } else {
+                    map[sum] = sum
+                    getSum(sum)
+                }
+            }
+            getSum(n)
+            return flag
+        };
+        console.log(isHappy(19))
     </script>
 </body>
 
