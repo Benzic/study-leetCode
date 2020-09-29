@@ -911,6 +911,77 @@
             }
             return ans
         };
+        var addStrings = function (num1, num2) {
+            A = num1.split("")
+            K = num2.split("")
+            let aLen = A.length
+            let kLen = K.length
+            for (let i = 0; i <= kLen - 1; i++) {
+                setNumber(aLen - 1 - i, parseInt(K[kLen - 1 - i]))
+            }
+
+            function setNumber(len, num) {
+                let flag = false
+                let sum = A[len] + num
+                if (A[len] !== undefined) {
+                    if (sum > 9) {
+                        A[flag ? len + 1 : len] = sum % 10
+                        if (A[len - 1] === undefined) {
+                            A.unshift(1)
+                            aLen += 1
+                            flag = true
+                        } else if (A[flag ? len : len - 1] === 9) {
+                            setNumber(flag ? len : len - 1, 1)
+                        } else {
+                            A[len - 1] += 1
+                        }
+                    } else {
+                        A[len] += num
+                    }
+                } else {
+                    A.unshift(num)
+                    aLen += 1
+                }
+            }
+            console.log(A)
+            return A
+        };
+        addStrings('1234', '2345')
+        var addToArrayForm = function (A, K) {
+            let aLen = A.length
+            K = K.toString()
+            let kLen = K.length
+            for (let i = 0; i <= kLen - 1; i++) {
+                console.log(K[i])
+                setNumber(aLen - 1 - i, parseInt(K[kLen - 1 - i]))
+            }
+
+            function setNumber(len, num) {
+                let flag = false
+                let sum = A[len] + num
+                if (A[len] !== undefined) {
+                    if (sum > 9) {
+                        A[flag ? len + 1 : len] = sum % 10
+                        if (A[len - 1] === undefined) {
+                            A.unshift(1)
+                            aLen += 1
+                            flag = true
+                        } else if (A[flag ? len : len - 1] === 9) {
+                            setNumber(flag ? len : len - 1, 1)
+                        } else {
+                            A[len - 1] += 1
+                        }
+                    } else {
+                        A[len] += num
+                    }
+                } else {
+                    A.unshift(num)
+                    aLen += 1
+                }
+            }
+            return A
+        };
+        console.log(addToArrayForm([9], 10000))
     </script>
 </body>
 
