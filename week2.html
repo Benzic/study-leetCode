@@ -872,6 +872,32 @@
             }
             return -1
         };
+        var maxProfit = function (prices) {
+            let ans = 0;
+            let sum = prices[0];
+            for (let i = 1; i <= prices.length - 1; i++) {
+                if (prices[i] - sum > 0) {
+                    ans += prices[i] - sum
+                }
+                sum = prices[i]
+            }
+            return ans
+        };
+        console.log(maxProfit([6, 1, 2, 9, 3, 7]))
+        var maxProfit = function (prices) {
+            let ans = 0;
+            let sum = prices[0];
+            for (let i = 1; i <= prices.length - 1; i++) {
+                if (sum - prices[i] > 0) {
+                    sum = prices[i]
+                }
+                if (prices[i] - sum > ans) {
+                    ans = prices[i] - sum
+                }
+            }
+            return ans
+        };
+        console.log(maxProfit([6, 1, 2, 9]))
     </script>
 </body>
 
