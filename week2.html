@@ -1129,6 +1129,55 @@
             })
             return array
         };
+        var searchMatrix = function (matrix, target) {
+            if (matrix.length == 0) {
+                return false;
+            }
+            let row = matrix.length;
+            let col = matrix[0].length;
+            while (row > 0 && col > 0) {
+                let num = matrix[0][col - 1]
+                if (num === target) {
+                    return true;
+                }
+                if (num < target) {
+                    matrix.shift();
+                    row = matrix.length;
+                } else {
+                    for (let i = 0; i < row; i++) {
+                        matrix[i].pop();
+                    }
+                    col = matrix[0].length;
+                }
+            }
+            return false;
+        };
+        var searchMatrix = function (matrix, target) {
+            let col = 0;
+            let row = 0;
+            if (matrix.length === 0 || matrix[row][col] > target) {
+                return false
+            }
+            let len = matrix[0].length - 1
+            while (col <= len && row <= matrix.length - 1) {
+                if (matrix[row][0] <= target && matrix[row][len] >= target) {
+                    if (matrix[row][col] === target) {
+                        return true
+                    }
+                    if (col === matrix[0].length - 1) {
+                        row++;
+                        col = 0
+                    } else {
+                        col++
+                    }
+                } else {
+                    row++
+                    col = 0
+                    continue
+                }
+            }
+            return false
+        };
     </script>
 </body>
 
