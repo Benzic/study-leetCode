@@ -1296,7 +1296,21 @@
             return index
         };
         console.log(removeDuplicates([1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5]))
-        
+        var isPerfectSquare = function (num) {
+            let left = 1;
+            let right = num;
+            while (left <= right) {
+                let mid = Math.floor((left + right) / 2);
+                if (mid === (num / mid)) {
+                    return true
+                } else if (mid > (num / mid)) {
+                    right = mid - 1
+                } else {
+                    left = mid + 1
+                }
+            }
+            return false
+        };
     </script>
 </body>
 
