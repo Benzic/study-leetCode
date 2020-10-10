@@ -1206,6 +1206,71 @@
             })
         };
         console.log(merge([1, 2, 3, 0, 0, 0], 3, [1, 5, 6], 3))
+        /**
+         * @param {character[][]} board
+         * @return {void} Do not return anything, modify board in-place instead.
+         */
+        var solveSudoku = function (board) {
+            const rows = new Array(9);
+            const cols = new Array(9);
+            const blocks = new Array(9);
+            const options = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            for (let i = 0; i < 9; i++) {
+                rows[i] = new Set(options)
+                cols[i] = new Set(options)
+                blocks[i] = new Set(options)
+            }
+
+            function getBlocksIndex(i, j) {
+                return (i / 3 | 0) * 3 + j / 3 | 0 //获取当前处于哪个小方块
+            }
+            for (let i = 0; i < 9; i++) {
+                for (let j = 0; j < 9; j++) {
+                    if (board[i][j] !== '.') {
+                        rows[i].delete(board[i][j]);
+                        cols[j].delete(board[i][j]);
+                        blocks[getBlocksIndex(i, j)].delete(board[i][j])
+                    }
+                }
+            }
+
+            function fill(i, j) {
+                if (j === 9) {
+                    i++
+                    j = 0
+                    if (i === 9) {
+                        return true
+                    }
+                }
+                if (board[i][j] !== '.') {
+                    return fill(i, j + 1)
+                }
+                const blockIndex = getBlocksIndex(i, j);
+                for (let num = 0; num < 9; num++) {
+                    const option = options[num];
+                    if (!rows[i].has(option) || !cols[j].has(option) || !blocks[blockIndex].has(option)) {
+                        continue
+                    }
+                    board[i][j] = option;
+                    rows[i].delete(option)
+                    cols[j].delete(option)
+                    blocks[blockIndex].delete(option)
+
+                    if (fill(i, j + 1)) {
+                        return true
+                    }
+                    board[i][j] = ".";
+                    rows[i].add(option)
+                    cols[j].add(option)
+                    blocks[blockIndex].add(option)
+                }
+                return false
+            }
+
+            fill(0, 0)
+            return board
+        };
+        
     </script>
 </body>
 
