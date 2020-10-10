@@ -1270,6 +1270,32 @@
             fill(0, 0)
             return board
         };
+        var removeDuplicates = function (nums) {
+            let index = 0;
+            let pass = 0;
+            while (index + pass <= nums.length - 1) {
+                let current = nums[index + pass + 2];
+                if (current === nums[index]) {
+                    pass++
+                } else {
+                    index++;
+                    [nums[index], nums[index + pass]] = [nums[index + pass], nums[index]]
+
+                }
+            }
+            return index
+        };
+        console.log(removeDuplicates([1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5]))
+        var removeDuplicates = function (nums) {
+            let index = 0;
+            for (let i = 0; i <= nums.length - 1; i++) {
+                if (index < 2 || nums[i] > nums[index - 2]) {
+                    nums[index++] = nums[i];
+                }
+            }
+            return index
+        };
+        console.log(removeDuplicates([1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 5]))
         
     </script>
 </body>
