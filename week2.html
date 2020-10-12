@@ -1311,6 +1311,30 @@
             }
             return false
         };
+        var combinationSum2 = function (candidates, target) {
+            candidates = candidates.sort((a, b) => {
+                return a - b
+            })
+            let arr = [];
+            let obj = {}
+
+            function dfs(target, index, array) {
+                if (target === 0 && !obj[array.toString()]) {
+                    obj[array.toString()] = true
+                    return arr.push(array.slice())
+                };
+                if (target < 0) return;
+                for (let i = index; i <= candidates.length - 1; i++) {
+                    let temp = target - candidates[i];
+                    array.push(candidates[i]);
+                    dfs(temp, i + 1, array);
+                    array.pop();
+                }
+            }
+            dfs(target, 0, [])
+            return [...arr]
+        };
+        console.log(combinationSum2([1, 4, 2, 1, 2, 7, 2, 5], 8))
     </script>
 </body>
 
