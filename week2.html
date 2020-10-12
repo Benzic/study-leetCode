@@ -1356,7 +1356,37 @@
         };
         console.log(combinationSum([2, 3, 6, 7], 8))
 
-        
+        var combine = function (n, k) {
+            let arr = [];
+
+            function dfs(array) {
+                if (array.length === k) return arr.push(array.slice());
+                for (let i = 1; i <= n; i++) {
+                    console.log(start)
+                    if (!array.length || array[array.length - 1] > i) {
+                        array.push(i);
+                        dfs(array);
+                        array.pop()
+                    }
+                }
+            }
+            dfs([]);
+            return arr
+        };
+        var combine = function (n, k) {
+            let arr = [];
+
+            function dfs(index, array) {
+                if (array.length === k) return arr.push(array.slice());
+                for (let i = index; i <= n; i++) {
+                    array.push(i);
+                    dfs(i + 1, array);
+                    array.pop()
+                }
+            }
+            dfs(index, []);
+            return arr
+        };
     </script>
 </body>
 
