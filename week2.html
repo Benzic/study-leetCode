@@ -1470,6 +1470,20 @@
             dfs([], 0)
             return [...arr]
         };
+        var subsets = function (nums) {
+            let arr = [];
+
+            function dfs(index, array) {
+                arr.push(array.slice())
+                for (let i = index; i <= nums.length - 1; i++) {
+                    array.push(nums[i]);
+                    dfs(i + 1, array);
+                    array.pop()
+                }
+            }
+            dfs(0, [])
+            return arr
+        };
     </script>
 </body>
 
