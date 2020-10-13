@@ -1484,6 +1484,45 @@
             dfs(0, [])
             return arr
         };
+        var subsetsWithDup = function (nums) {
+            let arr = [];
+            let obj = {};
+            nums.sort((a, b) => {
+                return a - b
+            });
+
+            function dfs(index, array) {
+                if (!obj[array.toString()]) {
+                    obj[array.toString()] = true
+                    arr.push(array.slice());
+                }
+                for (let i = index; i <= nums.length - 1; i++) {
+                    array.push(nums[i]);
+                    dfs(i + 1, array);
+                    array.pop()
+                }
+            }
+            dfs(0, [])
+            return arr
+        };
+        var subsetsWithDup = function (nums) {
+            let arr = [];
+            nums.sort((a, b) => {
+                return a - b
+            });
+
+            function dfs(index, array) {
+                arr.push(array.slice());
+                for (let i = index; i <= nums.length - 1; i++) {
+                    if (nums[i - 1] === nums[i] && i - 1 >= index) continue;
+                    array.push(nums[i]);
+                    dfs(i + 1, array);
+                    array.pop()
+                }
+            }
+            dfs(0, [])
+            return arr
+        };
     </script>
 </body>
 
