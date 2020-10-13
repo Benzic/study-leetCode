@@ -1411,6 +1411,22 @@
             return [...arr]
         };
         console.log(combinationSum2([1, 4, 2, 1, 2, 7, 2, 5], 8))
+        var combinationSum3 = function (k, n) {
+            let arr = [];
+
+            function dfs(target, index, array) {
+                if (array.length === k && target === 0) return arr.push(array.slice());
+                if (array.length === k && target < 0) return
+                for (let i = index; i <= 9; i++) {
+                    let temp = target - i
+                    array.push(i);
+                    dfs(temp, i + 1, array);
+                    array.pop()
+                }
+            }
+            dfs(n, 1, [])
+            return arr
+        };
     </script>
 </body>
 
