@@ -1427,6 +1427,25 @@
             dfs(n, 1, [])
             return arr
         };
+
+        var permute = function (nums) {
+            let arr = [];
+
+            function dfs(array) {
+                if (array.length === nums.length) return arr.push(array.slice());
+                if (array.length > nums.length) return;
+                for (let i = 0; i <= nums.length - 1; i++) {
+                    if (!array.includes(nums[i])) {
+                        array.push(nums[i]);
+                        dfs(array);
+                        array.pop()
+                    }
+
+                }
+            }
+            dfs([])
+            return arr
+        };
     </script>
 </body>
 
