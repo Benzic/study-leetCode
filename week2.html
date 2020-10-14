@@ -1551,7 +1551,7 @@
                 let ns = Array.from(new Set(Array.from(list)));
                 sum += ns.length;
                 for (let i = 0, l = ns.length; i < l; i++) {
-                    if (n > 1) { 
+                    if (n > 1) {
                         cal(list.replace(ns[i], ''), n - 1);
                     }
                 }
@@ -1559,6 +1559,27 @@
             cal(tiles, tiles.length);
             return sum;
         };
+        var sequentialDigits = function (low, high) {
+            let ans = [];
+            for (i = 1; i <= 9; i++) {
+                backtrack(low, high, i, i);
+            }
+
+            function backtrack(low, high, curNum, curTail) {
+                if (curNum >= low && curNum <= high) {
+                    ans.push(curNum)
+                }
+                if (curNum > high) {
+                    return;
+                }
+                if (curTail + 1 <= 9) {
+                    backtrack(low, high, curNum * 10 + curTail + 1, curTail + 1);
+                }
+            }
+            ans.sort((a, b) => a - b)
+            return ans;
+        };
+        console.log(sequentialDigits(10, 10000))
     </script>
 </body>
 
