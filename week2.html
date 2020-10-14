@@ -1523,6 +1523,42 @@
             dfs(0, [])
             return arr
         };
+        var numTilePossibilities = function (tiles) {
+            let obj = {}
+            let arr = new Set()
+
+            function dfs(path) {
+                if (path.length) {
+                    arr.add(path)
+                }
+                for (let i = 0; i <= tiles.length - 1; i++) {
+                    if (!obj[i]) {
+                        obj[i] = true
+                        path += tiles[i]
+                        dfs(path);
+                        obj[i] = false
+                        path = path.slice(0, path.length - 1)
+                    }
+                }
+            }
+            dfs("")
+            return arr.size
+        };
+        var numTilePossibilities = function (tiles) {
+            let sum = 0;
+
+            function cal(list, n) {
+                let ns = Array.from(new Set(Array.from(list)));
+                sum += ns.length;
+                for (let i = 0, l = ns.length; i < l; i++) {
+                    if (n > 1) { 
+                        cal(list.replace(ns[i], ''), n - 1);
+                    }
+                }
+            }
+            cal(tiles, tiles.length);
+            return sum;
+        };
     </script>
 </body>
 
