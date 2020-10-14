@@ -1311,6 +1311,82 @@
             }
             return false
         };
+        var isPerfectSquare = function (num) {
+            return num ** 0.5 % 1 === 0
+        };
+        var guessNumber = function (n) {
+            let left = 1;
+            let right = n;
+            while (left <= right) {
+                let mid = Math.floor((left + right) / 2);
+                switch (guess(mid)) {
+                    case -1:
+                        right = mid - 1;
+                        break;
+                    case 1:
+                        left = mid + 1;
+                        break;
+                    case 0:
+                        return mid;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
+        var combinationSum = function (candidates, target) {
+
+
+            let arr = [];
+
+            function dfs(value, array) {
+                if (value === 0) return arr.push(array.slice());
+                if (value < 0) return;
+                for (let i = 0; i <= candidates.length - 1; i++) {
+                    if (array.length === 0 || (array.length > 0 && array[array.length - 1] >= candidates[i])) {
+                        var current = value - candidates[i];
+                        array.push(candidates[i]);
+                        dfs(current, array);
+                        array.pop(candidates[i])
+                    }
+                }
+            }
+            dfs(target, [])
+            return arr
+        };
+        console.log(combinationSum([2, 3, 6, 7], 8))
+
+        var combine = function (n, k) {
+            let arr = [];
+
+            function dfs(array) {
+                if (array.length === k) return arr.push(array.slice());
+                for (let i = 1; i <= n; i++) {
+                    console.log(start)
+                    if (!array.length || array[array.length - 1] > i) {
+                        array.push(i);
+                        dfs(array);
+                        array.pop()
+                    }
+                }
+            }
+            dfs([]);
+            return arr
+        };
+        var combine = function (n, k) {
+            let arr = [];
+
+            function dfs(index, array) {
+                if (array.length === k) return arr.push(array.slice());
+                for (let i = index; i <= n; i++) {
+                    array.push(i);
+                    dfs(i + 1, array);
+                    array.pop()
+                }
+            }
+            dfs(index, []);
+            return arr
+        };
         var combinationSum2 = function (candidates, target) {
             candidates = candidates.sort((a, b) => {
                 return a - b
@@ -1359,6 +1435,175 @@
             return arr
         };
         console.log(combinationSum2([1, 4, 2, 1, 2, 7, 2, 5], 8))
+        var combinationSum3 = function (k, n) {
+            let arr = [];
+
+            function dfs(target, index, array) {
+                if (array.length === k && target === 0) return arr.push(array.slice());
+                if (array.length === k && target < 0) return
+                for (let i = index; i <= 9; i++) {
+                    let temp = target - i
+                    array.push(i);
+                    dfs(temp, i + 1, array);
+                    array.pop()
+                }
+            }
+            dfs(n, 1, [])
+            return arr
+        };
+
+        var permute = function (nums) {
+            let arr = [];
+
+            function dfs(array) {
+                if (array.length === nums.length) return arr.push(array.slice());
+                if (array.length > nums.length) return;
+                for (let i = 0; i <= nums.length - 1; i++) {
+                    if (!array.includes(nums[i])) {
+                        array.push(nums[i]);
+                        dfs(array);
+                        array.pop()
+                    }
+
+                }
+            }
+            dfs([])
+            return arr
+        };
+        var permuteUnique = function (nums) {
+            let arr = new Set();
+            let obj = {}
+            nums.sort((a, b) => a - b); // 升序排序
+            function dfs(array, index) {
+                if (array.length === nums.length) return arr.add(array.slice())
+                if (array.length > nums.length) return
+                for (let i = 0; i <= nums.length - 1; i++) {
+                    if (nums[i - 1] === nums[i] && i - 1 >= 0 && !obj[i - 1]) { // 避免产生重复的排列
+                        continue;
+                    }
+                    if (obj[i]) { // 这个数使用过了，跳过。
+                        continue;
+                    }
+                    array.push(nums[i]);
+                    obj[i] = true
+                    dfs(array, i + 1);
+                    array.pop()
+                    obj[i] = false
+                }
+            }
+            dfs([], 0)
+            return [...arr]
+        };
+        var subsets = function (nums) {
+            let arr = [];
+
+            function dfs(index, array) {
+                arr.push(array.slice())
+                for (let i = index; i <= nums.length - 1; i++) {
+                    array.push(nums[i]);
+                    dfs(i + 1, array);
+                    array.pop()
+                }
+            }
+            dfs(0, [])
+            return arr
+        };
+        var subsetsWithDup = function (nums) {
+            let arr = [];
+            let obj = {};
+            nums.sort((a, b) => {
+                return a - b
+            });
+
+            function dfs(index, array) {
+                if (!obj[array.toString()]) {
+                    obj[array.toString()] = true
+                    arr.push(array.slice());
+                }
+                for (let i = index; i <= nums.length - 1; i++) {
+                    array.push(nums[i]);
+                    dfs(i + 1, array);
+                    array.pop()
+                }
+            }
+            dfs(0, [])
+            return arr
+        };
+        var subsetsWithDup = function (nums) {
+            let arr = [];
+            nums.sort((a, b) => {
+                return a - b
+            });
+
+            function dfs(index, array) {
+                arr.push(array.slice());
+                for (let i = index; i <= nums.length - 1; i++) {
+                    if (nums[i - 1] === nums[i] && i - 1 >= index) continue;
+                    array.push(nums[i]);
+                    dfs(i + 1, array);
+                    array.pop()
+                }
+            }
+            dfs(0, [])
+            return arr
+        };
+        var numTilePossibilities = function (tiles) {
+            let obj = {}
+            let arr = new Set()
+
+            function dfs(path) {
+                if (path.length) {
+                    arr.add(path)
+                }
+                for (let i = 0; i <= tiles.length - 1; i++) {
+                    if (!obj[i]) {
+                        obj[i] = true
+                        path += tiles[i]
+                        dfs(path);
+                        obj[i] = false
+                        path = path.slice(0, path.length - 1)
+                    }
+                }
+            }
+            dfs("")
+            return arr.size
+        };
+        var numTilePossibilities = function (tiles) {
+            let sum = 0;
+
+            function cal(list, n) {
+                let ns = Array.from(new Set(Array.from(list)));
+                sum += ns.length;
+                for (let i = 0, l = ns.length; i < l; i++) {
+                    if (n > 1) {
+                        cal(list.replace(ns[i], ''), n - 1);
+                    }
+                }
+            }
+            cal(tiles, tiles.length);
+            return sum;
+        };
+        var sequentialDigits = function (low, high) {
+            let ans = [];
+            for (i = 1; i <= 9; i++) {
+                backtrack(low, high, i, i);
+            }
+
+            function backtrack(low, high, curNum, curTail) {
+                if (curNum >= low && curNum <= high) {
+                    ans.push(curNum)
+                }
+                if (curNum > high) {
+                    return;
+                }
+                if (curTail + 1 <= 9) {
+                    backtrack(low, high, curNum * 10 + curTail + 1, curTail + 1);
+                }
+            }
+            ans.sort((a, b) => a - b)
+            return ans;
+        };
+        console.log(sequentialDigits(10, 10000))
     </script>
 </body>
 
