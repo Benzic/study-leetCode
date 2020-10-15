@@ -1697,6 +1697,32 @@
                 }
             };
         };
+        var tribonacci = function (n) {
+            let dp = [];
+            dp[0] = 0;
+            dp[1] = 1;
+            dp[2] = 1;
+            for (let i = 3; i <= n; i++) {
+                dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
+            }
+            return dp[n]
+        };
+        var tribonacci = function (n) {
+            return fn(n, 0, 1, 1)
+
+            function fn(n, n1, n2, n3) {
+                if (n === 0) {
+                    return n1
+                }
+                if (n === 1) {
+                    return n2
+                }
+                if (n === 2) {
+                    return n3
+                }
+                return fn(n - 1, n2, n3, n1 + n2 + n3)
+            }
+        };
     </script>
 </body>
 
