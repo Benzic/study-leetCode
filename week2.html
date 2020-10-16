@@ -1740,6 +1740,25 @@
             }
             return arr
         };
+        var longestMountain = function (A) {
+            let len = 0;
+            let i = 1;
+            let n = A.length
+            while (i < n) {
+                while (i < n && A[i] <= A[i - 1]) {
+                    i++
+                }
+                let start = i;
+                while (i < n && A[i] > A[i - 1]) {
+                    i++
+                }
+                while (i < n && A[i] < A[i - 1]) {
+                    i++
+                    len = Math.max(len, i - start + 1)
+                }
+            }
+            return len
+        };
     </script>
 </body>
 
