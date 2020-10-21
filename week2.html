@@ -1867,6 +1867,52 @@
             return candies.map(item => item + extraCandies >= max);
         };
         console.log(kidsWithCandies([4, 2, 1, 1, 2], 1))
+
+        var numTeams = function (rating) {
+            let num = 0;
+            for (let i = 0; i <= rating.length - 1; i++) {
+                for (let j = i + 1; j <= rating.length - 1; j++) {
+                    for (let z = j + 1; z <= rating.length - 1; z++) {
+                        if (rating[i] < rating[j] && rating[j] < rating[z]) {
+                            num += 1
+                        } else if (rating[i] > rating[j] && rating[j] > rating[z]) {
+                            num += 1
+                        }
+                    }
+                }
+            }
+            return num
+        };
+        console.log(numTeams([1, 2, 3, 4]))
+
+        var numTeams = function (rating) {
+            let num = 0;
+            for (let i = 0; i <= rating.length - 1; i++) {
+                let leftLess = 0,
+                    leftMore = 0;
+                let rightLess = 0,
+                    rightMore = 0;
+                for (let j = 0; j <= i; j++) {
+                    if (rating[j] > rating[i]) {
+                        leftMore += 1
+                    }
+                    if (rating[j] < rating[i]) {
+                        leftLess += 1
+                    }
+                }
+                for (let z = i + 1; z <= rating.length - 1; z++) {
+                    if (rating[z] > rating[i]) {
+                        rightMore += 1
+                    }
+                    if (rating[z] < rating[i]) {
+                        rightLess += 1
+                    }
+                }
+                num += leftLess * rightMore + leftMore * rightLess
+            }
+            return num
+        };
+        console.log(numTeams([1, 2, 3, 4]))
     </script>
 </body>
 
