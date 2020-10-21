@@ -1845,6 +1845,28 @@
             [0, 1, 0],
             [0, 0, 0]
         ]))
+        var kidsWithCandies = function (candies, extraCandies) {
+            let max = Math.max.apply(Math, candies);
+            let index = 0;
+            let arr = []
+            while (index <= candies.length - 1) {
+                if (candies[index] + extraCandies >= max) {
+                    arr.push(true)
+                } else {
+                    arr.push(false)
+                }
+                index++
+            }
+            return arr
+        };
+        console.log(kidsWithCandies([4, 2, 1, 1, 2], 1))
+        var kidsWithCandies = function (candies, extraCandies) {
+            // 找到最大值
+            let max = Math.max(...candies);
+            // map循环找出符合条件的，不会改变原数组
+            return candies.map(item => item + extraCandies >= max);
+        };
+        console.log(kidsWithCandies([4, 2, 1, 1, 2], 1))
     </script>
 </body>
 
