@@ -1791,6 +1791,24 @@
             }
             return left;
         };
+        var eraseOverlapIntervals = function (intervals) {
+            intervals.sort((a, b) => {
+                return a[1] - b[1]
+            })
+            let flag = -Infinity;
+
+            let index = 0;
+            let count = 0
+            while (index < intervals.length) {
+                if (intervals[index][0] >= flag) {
+                    flag = intervals[index][1]
+                } else {
+                    count++
+                }
+                index++
+            }
+            return count
+        };
     </script>
 </body>
 
