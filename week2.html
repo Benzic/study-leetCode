@@ -1913,6 +1913,20 @@
             return num
         };
         console.log(numTeams([1, 2, 3, 4]))
+
+        var groupThePeople = function (groupSizes) {
+            let map = {},
+                array = [];
+            for (let i = 0; i <= groupSizes.length - 1; i++) {
+                !map[groupSizes[i]] && (map[groupSizes[i]] = [])
+                map[groupSizes[i]].push(i)
+                if (map[groupSizes[i]].length === groupSizes[i]) {
+                    array.push(map[groupSizes[i]])
+                    map[groupSizes[i]] = []
+                }
+            }
+            return array
+        };
     </script>
 </body>
 
