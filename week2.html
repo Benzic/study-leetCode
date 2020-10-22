@@ -1967,6 +1967,20 @@
             return res
         };
         console.log(singleNumber([5, 2, 3, 4, 2, 3, 4]))
+        var singleNumber = function (nums) {
+            let map = {};
+            let array = [];
+            for (let i = 0; i <= nums.length - 1; i++) {
+                !map[nums[i]] && (map[nums[i]] = 0)
+                map[nums[i]] += 1;
+            }
+            for (let key in map) {
+                if (map[key] === 1) {
+                    array.push(key)
+                }
+            }
+            return array
+        };
     </script>
 </body>
 
