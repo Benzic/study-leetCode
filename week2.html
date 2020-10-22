@@ -1927,6 +1927,24 @@
             }
             return array
         };
+        var partitionLabels = function (S) {
+            let map = {}
+            let arr = []
+            let start = 0
+            for (let i = 0; i <= S.length - 1; i++) {
+                map[S[i]] = i;
+            }
+            let splitIndex = 0;
+            for (let i = 0; i <= S.length; i++) {
+                let lastIndex = map[S[i]];
+                splitIndex = Math.max(splitIndex, lastIndex);
+                if (i === splitIndex) {
+                    arr.push(i - start + 1);
+                    start = i + 1
+                }
+            }
+            return arr
+        };
     </script>
 </body>
 
