@@ -1945,6 +1945,28 @@
             }
             return arr
         };
+
+        var singleNumber = function (nums) {
+            let map = {};
+            for (let i = 0; i <= nums.length - 1; i++) {
+                !map[nums[i]] && (map[nums[i]] = 0)
+                map[nums[i]] += 1
+            }
+            for (let key in map) {
+                if (map[key] === 1) {
+                    return key
+                }
+            }
+        };
+        console.log(singleNumber([5, 2, 3, 4, 2, 3, 4]))
+        var singleNumber = function (nums) {
+            let res = 0;
+            for (let key in nums) {
+                res ^= nums[key]
+            }
+            return res
+        };
+        console.log(singleNumber([5, 2, 3, 4, 2, 3, 4]))
     </script>
 </body>
 
