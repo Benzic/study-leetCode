@@ -2018,6 +2018,35 @@
             }
             return array
         };
+        var groupAnagrams = function (strs) {
+            let map = {};
+            let array = []
+            for (let i = 0; i <= strs.length - 1; i++) {
+                var key = Array.from(strs[i]).sort().join();
+                !map[key] && (map[key] = []);
+                map[key].push(strs[i])
+            }
+            return Object.values(map)
+        };
+        console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+        var groupAnagrams = function (strs) {
+            let map = {};
+            let array = []
+            for (let i = 0; i <= strs.length - 1; i++) {
+                let sortStr = strs[i].split("").sort((a, b) => {
+                    return a > b ? 1 : -1
+                }).join("");
+                !map[sortStr] && (map[sortStr] = []);
+                map[sortStr].push(strs[i])
+            }
+            for (let i in map) {
+                array.push(map[i])
+            }
+            return array
+        };
+        console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+
+        
     </script>
 </body>
 
