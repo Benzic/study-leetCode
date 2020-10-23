@@ -2046,7 +2046,32 @@
         };
         console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
 
-        
+        var isAnagram = function (s, t) {
+            let sStr = s.split("").sort((a, b) => {
+                return a > b ? 1 : -1
+            }).join("");
+            let tStr = t.split("").sort((a, b) => {
+                return a > b ? 1 : -1
+            }).join("");
+            return sStr === tStr
+        };
+        var isAnagram = function (s, t) {
+            if (s.length !== t.length) {
+                return false
+            }
+            let hash = new Array(26).fill(0);
+            let codeA = "a".charCodeAt()
+            for (let i = 0; i <= s.length - 1; i++) {
+                hash[s.charCodeAt(i) - codeA]++;
+                hash[t.charCodeAt(i) - codeA]--;
+            }
+            for (let i in hash) {
+                if (hash[i]) {
+                    return false
+                }
+            }
+            return true
+        };
     </script>
 </body>
 
