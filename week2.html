@@ -367,18 +367,15 @@
             let str = ""
             while (num >= 1) {
                 if ((num / 1000) >= 1) {
-                    console.log(num)
                     str += "M"
                     num = num - 1000
                 } else if ((num / 900) >= 1) {
                     str += "CM"
                     num = num - 900
                 } else if ((num / 500) >= 1) {
-                    console.log(num)
                     str += "D"
                     num = num - 500
                 } else if ((num / 400) >= 1) {
-                    console.log(num)
                     str += "CD"
                     num = num - 400
                 } else if ((num / 100) >= 1) {
@@ -549,16 +546,11 @@
                     len--
                 }
             }
-            console.log(len, map)
             while (right <= str.length - 1) {
                 if (map.hasOwnProperty(str[right])) {
-                    console.log(str[right])
                     map[str[right]]--
                     len--
                 }
-
-
-                console.log(len, str[left], str[right], left, right, str)
                 if (len === 0) {
                     array.push(left)
                 }
@@ -568,7 +560,6 @@
                     map[str[left - 1]]++
                     len++
                 }
-                console.log(len, map)
             }
             return array
         }
@@ -687,7 +678,6 @@
                 }
                 return num % 9
             }
-            console.log(120 % 9)
         };
         console.log(addDigits(18))
         var trailingZeroes = function (n) {
@@ -795,7 +785,6 @@
                 fast = n;
 
             function getSum(n) {
-                console.log(n)
                 let sum = 0
                 while (n !== 0) {
                     const bit = n % 10
@@ -943,7 +932,6 @@
                     aLen += 1
                 }
             }
-            console.log(A)
             return A
         };
         addStrings('1234', '2345')
@@ -952,7 +940,6 @@
             K = K.toString()
             let kLen = K.length
             for (let i = 0; i <= kLen - 1; i++) {
-                console.log(K[i])
                 setNumber(aLen - 1 - i, parseInt(K[kLen - 1 - i]))
             }
 
@@ -987,7 +974,6 @@
             let right = nums.length - 1;
             while (left <= right) {
                 let mid = Math.floor((left + right) / 2)
-                console.log(nums[mid], nums[left], nums[right])
                 if (nums[mid] === target) {
                     return mid
                 }
@@ -998,7 +984,6 @@
                         left = mid + 1
                     }
                 }
-                console.log(nums[mid], nums[left], nums[right])
                 if (nums[mid] <= nums[right]) {
                     if (nums[mid] <= target && target <= nums[right]) {
                         left = mid + 1
@@ -1362,7 +1347,6 @@
             function dfs(array) {
                 if (array.length === k) return arr.push(array.slice());
                 for (let i = 1; i <= n; i++) {
-                    console.log(start)
                     if (!array.length || array[array.length - 1] > i) {
                         array.push(i);
                         dfs(array);
