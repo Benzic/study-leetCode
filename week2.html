@@ -1981,6 +1981,31 @@
             }
             return array
         };
+        var kthFactor = function (n, k) {
+            let index = 1;
+            let count = 0
+            while (index <= n) {
+                if ((n / index % 1) === 0) {
+                    ++count
+                }
+                if (count === k) {
+                    return index
+                }
+                index++
+            }
+            return -1
+        };
+        var kthFactor = function (n, k) {
+            let index = 1;
+            let array = []
+            while (index <= n) {
+                if ((n / index % 1) === 0) {
+                    array.push(index)
+                }
+                index++
+            }
+            return k > array.length ? -1 : array[k - 1]
+        };
     </script>
 </body>
 
