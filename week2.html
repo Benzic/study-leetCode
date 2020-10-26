@@ -2133,6 +2133,30 @@
             }
             return index
         };
+        var firstUniqChar = function (s) {
+            for (let i = 0; i < s.length; i++) {
+                if (s.indexOf(s[i]) === s.lastIndexOf(s[i])) {
+                    return i
+                }
+            }
+            return -1
+        };
+        var findTheDifference = function (s, t) {
+            let map = {};
+            let num = 0
+            for (let i = 0; i <= t.length - 1; i++) {
+                s[i] && !map[s[i]] && (map[s[i]] = 0);
+                !map[t[i]] && (map[t[i]] = 0)
+                s[i] && (map[s[i]] += 1)
+                map[t[i]] += 1
+            }
+            for (let key in map) {
+                if (map[key] % 2 === 1) {
+                    return key
+                }
+            }
+            return ""
+        };
     </script>
 </body>
 
