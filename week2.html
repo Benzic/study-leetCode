@@ -2116,7 +2116,23 @@
             }
             return num
         }
-
+        var firstUniqChar = function (s) {
+            let index = -1;
+            let map = {};
+            for (let i = 0; i <= s.length - 1; i++) {
+                !map[s[i]] && (map[s[i]] = {
+                    val: 0
+                });
+                map[s[i]].val += 1
+                map[s[i]].index = i;
+            }
+            for (let key in map) {
+                if (map[key].val === 1) {
+                    return map[key].index
+                }
+            }
+            return index
+        };
     </script>
 </body>
 
