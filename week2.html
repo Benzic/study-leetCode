@@ -2244,7 +2244,20 @@
             }
             return ANum + "A" + BNum + "B"
         };
-
+        var leastBricks = function (wall) {
+            let map = {}
+            let min = 0
+            for (let i = 0; i <= wall.length - 1; i++) {
+                let sum = 0
+                for (let j = 0; j < wall[i].length - 1; j++) {
+                    sum += wall[i][j];
+                    !map[sum] && (map[sum] = 0);
+                    map[sum] += 1;
+                    min = Math.max(map[sum], min);
+                }
+            }
+            return wall.length - min
+        };
     </script>
 </body>
 
