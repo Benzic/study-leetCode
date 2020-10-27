@@ -2258,6 +2258,27 @@
             }
             return wall.length - min
         };
+        var findLength = function (A, B) {
+            let max = 0
+            for (let i = 0; i <= A.length - 1; i++) {
+                let a = A[i]
+                if (max > A.length - i) break
+                for (let j = 0; j <= B.length - 1; j++) {
+                    let b = B[j];
+                    if (max > B.length - j) break
+                    if (a === b) {
+                        let len = 1
+                        while (i + len < A.length && j + len < B.length && A[i + len] === B[j + len]) {
+                            len += 1
+                        }
+                        if (len > max) {
+                            max = len
+                        }
+                    }
+                }
+            }
+            return max
+        };
     </script>
 </body>
 
