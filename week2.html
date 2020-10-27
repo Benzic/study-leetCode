@@ -2222,6 +2222,29 @@
             }
             return array
         };
+        var getHint = function (secret, guess) {
+            let ANum = 0;
+            let BNum = 0;
+            let mapS = {};
+            let mapG = {}
+            for (let i = 0; i <= secret.length - 1; i++) {
+                if (secret[i] === guess[i]) {
+                    ANum += 1
+                } else {
+                    !mapS[secret[i]] && (mapS[secret[i]] = 0);
+                    !mapG[guess[i]] && (mapG[guess[i]] = 0);
+                    mapS[secret[i]] += 1;
+                    mapG[guess[i]] += 1;
+                }
+            }
+            for (let i in mapG) {
+                if (mapS[i]) {
+                    BNum += Math.min(mapS[i], mapG[i])
+                }
+            }
+            return ANum + "A" + BNum + "B"
+        };
+
     </script>
 </body>
 
