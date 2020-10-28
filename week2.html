@@ -2353,7 +2353,23 @@
         var reverseWords = function (s) {
             return s.trim().split(/\s+/).reverse().join(" ")
         };
-     
+        var compareVersion = function (version1, version2) {
+            let v1Array = version1.split(".");
+            let v2Array = version2.split(".");
+            let len = v1Array.length > v2Array.length ? v1Array.length : v2Array.length;
+            for (let i = 0; i <= len - 1; i++) {
+                let n1 = Number(v1Array[i]) || 0
+                let n2 = Number(v2Array[i]) || 0
+                if (n1 > n2) {
+                    return 1
+                } else if (n1 < n2) {
+                    return -1
+                } else {
+                    continue
+                }
+            }
+            return 0
+        };
     </script>
 </body>
 
