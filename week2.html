@@ -2441,6 +2441,28 @@
             }
             return true
         };
+        var repeatedStringMatch = function (a, b) {
+            for (let i = 0; i <= b.length - 1; i++) {
+                if (a.indexOf(b[i]) === -1) {
+                    return -1
+                    break
+                }
+            }
+            if (a.indexOf(b) !== -1) {
+                return 1
+            }
+            let num = 1
+            let str = a
+            while (str.length <= (b.length + a.length * 2)) {
+                str += a;
+                num += 1
+                if (str.indexOf(b) !== -1) {
+                    return num
+                }
+            }
+            return -1
+        };
+        console.log(repeatedStringMatch("aaaaaab", "ba"))
     </script>
 </body>
 
