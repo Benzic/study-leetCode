@@ -2370,6 +2370,25 @@
             }
             return 0
         };
+        var compress = function (chars) {
+            let index = 0;
+            let num = 1;
+            while (index <= chars.length - 1) {
+                let len = 0;
+                if (chars[index + 1] !== chars[index]) {
+                    if (num > 1) {
+                        len = num - num.toString().length - 1;
+                        chars.splice(index + 1 - num, num, chars[index], ...num.toString().split(""))
+                    }
+                    index = index - len
+                    num = 1
+                } else {
+                    num += 1
+                }
+                index++
+            }
+        };
+        console.log(compress(['a', 'a', 'f', 'f', 'b', 'd', 'd', 'd', 'd']))
     </script>
 </body>
 
