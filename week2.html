@@ -2389,6 +2389,50 @@
             }
         };
         console.log(compress(['a', 'a', 'f', 'f', 'b', 'd', 'd', 'd', 'd']))
+
+        var validIPAddress = function (IP) {
+            if (IP.indexOf(".") !== -1) {
+                let array = IP.split(".");
+                if (array.length !== 4) {
+                    return "Neither"
+                } else {
+                    for (let i = 0; i <= array.length - 1; i++) {
+                        if (array[i] !== Number(array[i]).toString()) {
+                            return "Neither"
+                        } else if (array[i] <= 255 && array[i] >= 0) {
+                            continue
+                        } else {
+                            return "Neither"
+                        }
+                    }
+                    return 'IPv4'
+                }
+            } else if (IP.indexOf(":") !== -1) {
+                let array = IP.split(":");
+                if (array.length !== 8) {
+                    return "Neither"
+                } else {
+                    let boolean = true
+                    array.forEach((item) => {
+                        (!item || item.length > 4 || item.length === 0) && (boolean = false);
+                        for (let i = 0; i <= item.length - 1; i++) {
+                            let value = item[i].toUpperCase().charCodeAt()
+                            if ((value < 48 || value > 57) && (value < 65 || value > 70)) {
+                                boolean = false
+                            }
+                        }
+                    })
+                    if (boolean) {
+                        return "IPv6"
+                    } else {
+                        return "Neither"
+                    }
+                }
+            } else {
+                return "Neither"
+            }
+        };
+        console.log(validIPAddress("20EE:Fb8:85a3:0:0:8A2E:0370:7334"))
     </script>
 </body>
 
