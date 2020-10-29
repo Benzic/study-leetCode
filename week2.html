@@ -2433,6 +2433,14 @@
             }
         };
         console.log(validIPAddress("20EE:Fb8:85a3:0:0:8A2E:0370:7334"))
+        var canJump = function (nums) {
+            let k = 0;
+            for (let i = 0; i <= nums.length - 1; i++) {
+                if (i > k) return false;
+                k = Math.max(k, i + nums[i]);
+            }
+            return true
+        };
     </script>
 </body>
 
