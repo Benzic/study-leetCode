@@ -2424,9 +2424,8 @@
                     })
                     if (boolean) {
                         return "IPv6"
-                    } else {
-                        return "Neither"
                     }
+                    return "Neither"
                 }
             } else {
                 return "Neither"
@@ -2442,27 +2441,44 @@
             return true
         };
         var repeatedStringMatch = function (a, b) {
-            for (let i = 0; i <= b.length - 1; i++) {
-                if (a.indexOf(b[i]) === -1) {
-                    return -1
-                    break
-                }
-            }
-            if (a.indexOf(b) !== -1) {
+            if (a.indexOf(b) !== -1) { //如果a直接包含b
                 return 1
             }
             let num = 1
             let str = a
-            while (str.length <= (b.length + a.length * 2)) {
+            while (str.length <= (b.length + a.length * 2)) { //判断的最大边界是b.length + a.length * 2
                 str += a;
                 num += 1
-                if (str.indexOf(b) !== -1) {
+                if (str.indexOf(b) !== -1) { //如果b存在于新的strz中返回重复的次数
                     return num
                 }
             }
             return -1
         };
         console.log(repeatedStringMatch("aaaaaab", "ba"))
+        var printVertically = function (s) {
+            let arr = s.split(" ")
+            let array = [];
+            let index = 0;
+            let len = 0
+            for (let i = 0; i <= arr.length - 1; i++) {
+                len = Math.max(len, arr[i].length)
+            }
+            while (index < len) {
+                let str = "";
+                for (let i = 0; i <= arr.length - 1; i++) {
+                    if (arr[i][index]) {
+                        str += arr[i][index]
+                    } else {
+                        str += " ";
+                    }
+                }
+                array.push(str.replace(/(\s*$)/g, ""))
+                index++
+            }
+            return array
+        };
+        console.log(printVertically("HAY WHI YOUT"))
     </script>
 </body>
 
