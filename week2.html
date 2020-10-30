@@ -2479,6 +2479,25 @@
             return array
         };
         console.log(printVertically("HAY WHI YOUT"))
+
+        var islandPerimeter = function (grid) {
+            let longth = 0;
+            for (let i = 0; i <= grid.length - 1; i++) {
+                for (let j = 0; j <= grid[i].length - 1; j++) {
+                    if (grid[i][j] === 1) {
+                        longth += 4;
+                        if (grid[i + 1] && grid[i + 1][j] === 1) {
+                            longth -= 1
+                        }
+                        if (grid[i][j + 1] && grid[i][j + 1] === 1) {
+                            longth -= 1
+                        }
+                    }
+                }
+            }
+            return longth
+        };
+     
     </script>
 </body>
 
