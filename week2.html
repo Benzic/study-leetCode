@@ -2095,6 +2095,32 @@
 
             return num
         };
+
+        var countCharacters = function (words, chars) {
+            let num = 0;
+            let map = {};
+            for (let i = 0; i <= chars.length - 1; i++) {
+                !map[chars[i]] && (map[chars[i]] = 0)
+                map[chars[i]] += 1
+            }
+            for (let i = 0; i <= words.length - 1; i++) {
+                let boolean = true
+                let currentMap = {
+                    ...map
+                }
+                for (let j = 0; j <= words[i].length - 1; j++) {
+                    if (currentMap[words[i][j]]) {
+                        currentMap[words[i][j]] -= 1
+                    } else {
+                        boolean = false
+                    }
+                }
+                if (boolean) {
+                    num += words[i].length
+                }
+            }
+            return num
+        };
     </script>
 </body>
 
