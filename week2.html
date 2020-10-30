@@ -2497,7 +2497,34 @@
             }
             return longth
         };
-     
+        var displayTable = function (orders) {
+            let array = [];
+            let index = 0;
+            let foods = new Set()
+            let tables = {};
+            while (index <= orders.length - 1) {
+                let food = orders[index][2];
+                let table = orders[index][1];
+                foods.add(food);
+                !tables[table] && (tables[table] = {});
+                !tables[table][food] && (tables[table][
+                    food
+                ] = 0);
+                tables[table][food] += 1
+                index++
+            }
+            foods = Array.from(foods).sort()
+            array.push(["Table", ...foods])
+            for (let j in tables) {
+                let arr = [j + ""]
+                for (let i in foods) {
+                    arr.push(!tables[j][foods[i]] ? "0" : "" + tables[j][foods[i]])
+                }
+                array.push(arr)
+            }
+            return array
+        }
+
     </script>
 </body>
 
