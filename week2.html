@@ -2524,7 +2524,19 @@
             }
             return array
         }
-
+        var subarraysDivByK = function (A, K) {
+            let sum = 0;
+            let result = 0;
+            let map = new Array(K).fill(0)
+            for (let i = 0; i <= A.length - 1; i++) {
+                sum += A[i];
+                let num = (sum % K + K) % K
+                if (num === 0) result++
+                result += map[num]
+                map[num] += 1;
+            }
+            return result
+        };
     </script>
 </body>
 
