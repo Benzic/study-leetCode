@@ -2121,6 +2121,25 @@
             }
             return num
         };
+
+        var minPathSum = function (grid) {
+            let n = grid.length;
+            let m = grid[0].length
+            let arr = []
+            for (let i = 0; i <= n - 1; i++) {
+                for (let j = 0; j <= m - 1; j++) {
+                    if (i === 0 && j === 0) continue;
+                    if (j === 0) {
+                        grid[i][j] = grid[i - 1][j] + grid[i][j];
+                    } else if (i === 0) {
+                        grid[i][j] = grid[i][j - 1] + grid[i][j];
+                    } else {
+                        grid[i][j] = Math.min(grid[i - 1][j], grid[i][j - 1]) + grid[i][j]
+                    }
+                }
+            }
+            return grid[n - 1][m - 1]
+        };
     </script>
 </body>
 
