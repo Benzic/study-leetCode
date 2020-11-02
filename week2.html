@@ -2121,7 +2121,7 @@
             }
             return num
         };
-
+        
         var minPathSum = function (grid) {
             let n = grid.length;
             let m = grid[0].length
@@ -2139,6 +2139,29 @@
                 }
             }
             return grid[n - 1][m - 1]
+        };
+
+        var wordBreak = function (s, wordDict) {
+            let wordList = new Set(wordDict);
+
+            let len = s.length
+            let hasWord = new Array(len);
+
+            function dfs(start) {
+                if (start == len) return true;
+                if (hasWord[start] !== undefined) return hasWord[start];
+                for (let i = start + 1; i <= len; i++) {
+                    let word = s.slice(start, i);
+                    if (wordList.has(word) && dfs(i)) {
+                        hasWord[i] = true
+                        return true
+                    }
+                }
+                hasWord[start] = false
+                return false
+            }
+
+            return dfs(0)
         };
     </script>
 </body>
