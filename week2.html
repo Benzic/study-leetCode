@@ -2174,6 +2174,23 @@
             while (right > 1 && A[right] < A[right - 1]) right--;
             return left == right;
         };
+        var insert = function (intervals, newInterval) {
+            intervals.push(newInterval)
+            intervals.sort((a, b) => a[0] - b[0]);
+            if (intervals.length <= 1) return intervals
+            let arrays = [];
+            arrays.push(intervals[0])
+
+            for (let i = 0; i <= intervals.length - 1; i++) {
+                if (arrays[arrays.length - 1][1] >= intervals[i][0]) {
+                    arrays[arrays.length - 1][1] = Math.max(arrays[arrays.length - 1][1], intervals[i][1])
+                } else {
+                    arrays.push(intervals[i])
+                }
+            }
+            return arrays
+        };
+       
     </script>
 </body>
 
