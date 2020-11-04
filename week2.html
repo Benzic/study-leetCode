@@ -2206,7 +2206,50 @@
             return num
 
         };
-
+        var canPlaceFlowers = function (flowerbed, n) {
+            let num = 0
+            let index = 0;
+            let len = flowerbed.length - 1
+            while (index <= len) {
+                if (flowerbed[index] === 0 && (index == len || flowerbed[index + 1] == 0) && (index == 0 ||
+                        flowerbed[index - 1] == 0)) {
+                    flowerbed[index] = 1
+                    num += 1
+                }
+                index += 1
+            }
+            return num >= n
+        };
+        var canPlaceFlowers = function (flowerbed, n) {
+            let num = 0
+            let index = 0;
+            let len = flowerbed.length - 1
+            if (flowerbed.length === 1 && flowerbed[0] === 0) {
+                return true
+            }
+            while (index <= len) {
+                if (flowerbed[index] === 0) {
+                    if (index === 0 && flowerbed[index + 1] === 0) {
+                        flowerbed[index] = 1
+                        num += 1
+                        index += 1
+                        continue
+                    }
+                    if (index === len && flowerbed[index - 1] === 0) {
+                        flowerbed[index] = 1
+                        num += 1
+                        index += 1
+                        continue
+                    }
+                    if (flowerbed[index - 1] === 0 && flowerbed[index + 1] === 0) {
+                        flowerbed[index] = 1
+                        num += 1
+                    }
+                }
+                index += 1
+            }
+            return num >= n
+        };
     </script>
 </body>
 
