@@ -2295,6 +2295,31 @@
         console.log(ladderLength(beginWord = "hit",
             endWord = "cog",
             wordList = ["hot", "dot", "dog", "lot", "log", "cog"]))
+        var countAndSay = function (n) {
+            let str = "1";
+            if (n <= 1) {
+                return str
+            }
+            let index = 1;
+            let len = str.length - 1
+            while (index <= n - 1) {
+                index++
+                let ss = ""
+                for (let i = 0; i <= str.length - 1; i++) {
+                    let num = 1
+                    let nStr = str[i]
+                    while (i + 1 <= str.length - 1 && str[i] === str[i + 1]) {
+                        num += 1
+                        i++
+                        continue
+                    }
+                    ss += num + "" + str[i]
+                }
+                str = ss
+            }
+            return str
+        };
+        console.log(countAndSay(4))
 
     </script>
 </body>
