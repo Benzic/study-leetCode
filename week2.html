@@ -2444,6 +2444,22 @@
         console.log(fullJustify(
             ["Listen", "to", "many,", "speak", "to", "a", "few."], 6))
 
+        var slowestKey = function (releaseTimes, keysPressed) {
+            let index = 1;
+            let max = keysPressed[0];
+            let num = releaseTimes[0];
+            while (index <= releaseTimes.length - 1) {
+                let current = releaseTimes[index] - releaseTimes[index - 1];
+                if (current > num) {
+                    max = keysPressed[index]
+                } else if (current == num) {
+                    max = max.charCodeAt() - keysPressed[index].charCodeAt() > 0 ? max : keysPressed[index]
+                }
+                num = Math.max(num, current)
+                index++
+            }
+            return max
+        };
     </script>
 </body>
 
