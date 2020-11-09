@@ -2487,7 +2487,11 @@
             }
             return arr.join("")
         };
-
+        var kClosest = function (points, K) {
+            return points.sort((a, b) => {
+                return (a[0] ** 2 + a[1] ** 2) - (b[0] ** 2 + b[1] ** 2)
+            }).splice(0, K)
+        };
     </script>
 </body>
 
