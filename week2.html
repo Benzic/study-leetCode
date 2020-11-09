@@ -2460,6 +2460,21 @@
             }
             return max
         };
+
+        var removeDuplicateLetters = function (s) {
+            let arr = []
+            for (let i = 0; i <= s.length - 1; i++) {
+                var char = s[i]
+                if (arr.indexOf(char) > -1) continue
+                while (arr.length > 0 && arr[arr.length - 1] > char && s.indexOf(arr[arr.length - 1], i) > i) {
+                    arr.pop()
+                }
+                arr.push(char)
+            }
+            return arr.join("")
+        };
+        console.log(removeDuplicateLetters("cbacdcbc")) //'acdb'
+
     </script>
 </body>
 
