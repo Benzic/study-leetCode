@@ -2508,6 +2508,20 @@
             }
             return nums
         };
+        var minCost = function (s, cost) {
+            let count = 0;
+            for (let i = 1; i <= s.length - 1; i++) {
+                if (s[i] === s[i - 1]) {
+                    if (cost[i - 1] > cost[i]) {
+                        count += cost[i];
+                        cost[i] = cost[i - 1]
+                    } else {
+                        count += cost[i - 1];
+                    }
+                }
+            }
+            return count
+        };
     </script>
 </body>
 
