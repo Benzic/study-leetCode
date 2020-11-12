@@ -2497,7 +2497,8 @@
             while (i >= 0 && nums[i] >= nums[i + 1]) i--
             if (i >= 0) {
                 let j = nums.length - 1
-                while (j >= 0 && nums[i] >= nums[j]) j--[nums[i], nums[j]] = [nums[j], nums[i]]
+                while (j >= 0 && nums[i] >= nums[j]) j--;
+                [nums[i], nums[j]] = [nums[j], nums[i]]
             }
             let left = i + 1
             let right = nums.length - 1
@@ -2522,6 +2523,37 @@
             }
             return count
         };
+        var sortArrayByParityII = function (A) {
+            let arr = [];
+            let even = 0;
+            let odd = 1
+            for (let i = 0; i <= A.length - 1; i++) {
+                if (A[i] % 2 === 0) {
+                    arr[even] = A[i];
+                    even += 2
+                } else {
+                    arr[odd] = A[i];
+                    odd += 2
+                }
+            }
+            return arr
+        };
+        var sortArrayByParityII = function (A) {
+            let left = 0
+            let right = 1
+            while (left <= A.length - 1) {
+                if (A[left] % 2 == 1) {
+                    while (A[right] % 2 == 1) {
+                        right += 2
+                    }
+                    [A[left], A[right]] = [A[right], A[left]]
+                }
+                left += 2
+            }
+            return A
+        };
+
+
     </script>
 </body>
 
