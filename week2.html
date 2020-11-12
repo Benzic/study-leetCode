@@ -2583,7 +2583,29 @@
             }
             return arrEven.concat(arrOdd)
         };
-
+        var oddCells = function (n, m, indices) {
+            let count = 0
+            let arr = new Array(n).fill(0)
+            for (let i = 0; i <= n - 1; i++) {
+                arr[i] = new Array(m).fill(0)
+            }
+            for (let i = 0; i <= indices.length - 1; i++) {
+                for (let j = 0; j <= m - 1; j++) {
+                    arr[indices[i][0]][j] += 1;
+                }
+                for (let k = 0; k <= n - 1; k++) {
+                    arr[k][indices[i][1]] += 1
+                }
+            }
+            for (let i = 0; i <= n - 1; i++) {
+                for (let j = 0; j <= m - 1; j++) {
+                    if (arr[i][j] % 2 === 1) {
+                        count += 1
+                    }
+                }
+            }
+            return count
+        };
 
     </script>
 </body>
