@@ -2697,6 +2697,32 @@
             [6, 1],
             [5, 2]
         ]))
+        var findPairs = function (nums, k) {
+            nums.sort((a, b) => a - b)
+            let left = 0;
+            let right = 0;
+            let num = 0;
+            let map = {};
+            while (left <= nums.length - 1) {
+                right = nums.length - 1
+                if (nums[left] === nums[left + 1] && k !== 0) {
+                    left += 1
+                    continue
+                }
+                while (left < right) {
+                    if (nums[right] - nums[left] === k) {
+                        let str = nums[left] + "+" + k
+                        if (!map[str]) {
+                            num += 1;
+                            map[str] = true;
+                        }
+                    }
+                    right -= 1
+                }
+                left += 1
+            }
+            return num
+        };
     </script>
 </body>
 
