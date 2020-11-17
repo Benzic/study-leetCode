@@ -2772,6 +2772,19 @@
             return compare(S) === compare(T);
         };
 
+        var allCellsDistOrder = function (R, C, r0, c0) {
+            let arr = [];
+            for (let i = 0; i <= R - 1; i++) {
+                for (let j = 0; j <= C - 1; j++) {
+                    arr.push([i, j])
+                }
+            }
+            arr.sort((a, b) => {
+                return (Math.abs(a[0] - r0) + Math.abs(a[1] - c0)) - (Math.abs(b[0] - r0) + Math.abs(b[1] -
+                    c0))
+            })
+            return arr
+        };
     </script>
 </body>
 
