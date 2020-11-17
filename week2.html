@@ -2703,13 +2703,17 @@
             let right = 0;
             let num = 0;
             let map = {};
-            while (left <= nums.length - 1) {
+            while (left < nums.length - 1) {
                 right = nums.length - 1
-                if (nums[left] === nums[left + 1] && k !== 0) {
+                if (left > 0 && nums[left] === nums[left + 1] && k !== 0) {
                     left += 1
                     continue
                 }
                 while (left < right) {
+                    if (right - 1 > left && nums[right] === nums[right - 1]) {
+                        right -= 1
+                        continue;
+                    }
                     if (nums[right] - nums[left] === k) {
                         let str = nums[left] + "+" + k
                         if (!map[str]) {
@@ -2723,6 +2727,42 @@
             }
             return num
         };
+        console.log(findPairs([3, 1, 4, 1, 5], 2))
+        var findPairs = function (nums, k) {
+            nums.sort((a, b) => a - b)
+            let num = 0
+            for (let i = 0; i < nums.length - 1; i++) {
+                if (i > 0 && nums[i] === nums[i - 1]) continue
+                for (let j = i + 1; j <= nums.length - 1; j++) {
+                    if (j - 1 > i && nums[j] === nums[j - 1]) continue;
+                    if (nums[j] - nums[i] > k) break;
+                    if (nums[j] - nums[i] === k) {
+                        num++
+                    }
+                }
+            }
+            return num
+        };
+        console.log(findPairs([3, 1, 4, 1, 5], 2))
+        var findPairs = function (nums, k) {
+            nums.sort((a, b) => a - b)
+            let left = 0,
+                right = 1,
+                len = nums.length,
+                count = 0;
+            while (right < len) {
+                let target = nums[left] + k
+                while (right < len && nums[right] < target) right++;
+                if (right < len && nums[right] === target) count++;
+                while (left < len - 1 && nums[left] === nums[left + 1]) left++;
+                left++;
+                if (right <= left) right = left + 1
+            }
+            return count
+        };
+        console.log(findPairs([3, 1, 4, 1, 5], 2))
+
+
     </script>
 </body>
 
