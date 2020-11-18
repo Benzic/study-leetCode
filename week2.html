@@ -2785,6 +2785,15 @@
             })
             return arr
         };
+        var shuffle = function (nums, n) {
+            let index = 0;
+            let arr = []
+            for (let i = 0; i <= n - 1; i++) {
+                arr[index++] = nums[i];
+                arr[index++] = nums[i + n]
+            }
+            return arr
+        };
     </script>
 </body>
 
