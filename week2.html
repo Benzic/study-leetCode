@@ -2813,9 +2813,16 @@
                 nums.unshift(nums.pop())
             }
         };
-        
+
         var rotate = function (nums, k) {
             nums.splice(0, 0, ...nums.splice(nums.length - k));
+        };
+
+        var largestNumber = function (nums) {
+            nums.sort((a, b) => {
+                return ('' + b + a) - ('' + a + b)
+            })
+            return nums[0] ? nums.join("") : "0"
         };
     </script>
 </body>
