@@ -2457,8 +2457,7 @@
             }
             return result
         };
-        console.log(fullJustify(
-            ["Listen", "to", "many,", "speak", "to", "a", "few."], 6))
+        console.log(fullJustify(["Listen", "to", "many,", "speak", "to", "a", "few."], 6))
 
         var slowestKey = function (releaseTimes, keysPressed) {
             let index = 1;
@@ -2856,6 +2855,18 @@
                 }
             }
             return true
+        };
+        var transpose = function (A) {
+            if (!A.length) return []
+            let array = []
+            for (let i = 0; i <= A[0].length - 1; i++) {
+                let arr = []
+                for (let j = 0; j <= A.length - 1; j++) {
+                    arr.push(A[j][i])
+                }
+                array.push(arr)
+            }
+            return array
         };
     </script>
 </body>
