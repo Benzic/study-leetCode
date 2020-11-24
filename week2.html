@@ -2868,6 +2868,27 @@
             }
             return array
         };
+
+        var getWinner = function (arr, k) {
+            let count = 0;
+            if (k >= arr.length) {
+                return Math.max(...arr)
+            }
+            let current = arr[0]
+            for (let i = 1; i <= arr.length - 1; i++) {
+                if (current < arr[i]) {
+                    current = arr[i];
+                    count = 1
+                } else {
+                    count += 1
+                }
+                if (count === k) {
+                    return current
+                }
+            }
+            return current
+        };
+
     </script>
 </body>
 
