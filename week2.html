@@ -2955,6 +2955,18 @@
             }
             return nums.filter((a) => a !== undefined)
         };
+        var majorityElement = function (nums) {
+            let map = {}
+            let len = nums.length - 1
+            for (let i = 0; i <= len; i++) {
+                !map[nums[i]] && (map[nums[i]] = 0);
+                map[nums[i]] += 1;
+                if (map[nums[i]] > (len + 1) / 2) {
+                    return nums[i]
+                }
+            }
+            return 0
+        };
     </script>
 </body>
 
