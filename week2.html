@@ -2888,7 +2888,26 @@
             }
             return current
         };
-
+        var findUnsortedSubarray = function (nums) {
+            let len = nums.length - 1
+            let left = 0;
+            let right = -1;
+            let max = nums[0];
+            let min = nums[len];
+            for (let i = 0; i <= len; i++) {
+                if (nums[i] < max) {
+                    right = i
+                } else {
+                    max = nums[i]
+                }
+                if (nums[len - i - 1] > min) {
+                    left = len - i - 1
+                } else {
+                    min = nums[len - i - 1]
+                }
+            }
+            return right - left + 1
+        };
     </script>
 </body>
 
