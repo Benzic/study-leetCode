@@ -2924,6 +2924,13 @@
             max = Math.max(seats.length - 1 - start, max)
             return max
         };
+        var firstMissingPositive = function (nums) {
+            for (let i = 1; i <= Infinity; i++) {
+                if (!nums.includes(i)) {
+                    return i
+                }
+            }
+        };
     </script>
 </body>
 
