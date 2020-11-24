@@ -2908,6 +2908,22 @@
             }
             return right - left + 1
         };
+        var maxDistToClosest = function (seats) {
+            let max = 0;
+            let start = -1;
+            for (let i = 0; i <= seats.length - 1; i++) {
+                if (seats[i] == 1) {
+                    if (start === -1) {
+                        max = i;
+                    } else {
+                        max = Math.max(Math.floor((i + start) / 2) - start, max)
+                    }
+                    start = i;
+                }
+            }
+            max = Math.max(seats.length - 1 - start, max)
+            return max
+        };
     </script>
 </body>
 
