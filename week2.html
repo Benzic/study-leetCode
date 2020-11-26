@@ -2978,6 +2978,21 @@
             }
             return max
         };
+        var subarraySum = function (nums, k) {
+            let map = {
+                0: 1
+            };
+            let pre = 0;
+            let count = 0
+            for (let i = 0; i <= nums.length - 1; i++) {
+                pre += nums[i]
+                if (map[pre - k]) {
+                    count += map[pre - k]
+                }!map[pre] && (map[pre] = 0)
+                map[pre] += 1
+            }
+            return count
+        };
     </script>
 </body>
 
