@@ -2993,6 +2993,29 @@
             }
             return count
         };
+        var numIslands = function (grid) {
+            let count = 0;
+            for (let i = 0; i <= grid.length - 1; i++) {
+                for (let j = 0; j <= grid[i].length - 1; j++) {
+                    if (grid[i][j] === "1") {
+                        findIsLand(i, j)
+                        count += 1
+                    }
+                }
+            }
+
+            function findIsLand(i, j) {
+                if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] != '1') {
+                    return;
+                }
+                grid[i][j] = '2';
+                findIsLand(i + 1, j);
+                findIsLand(i - 1, j);
+                findIsLand(i, j + 1);
+                findIsLand(i, j - 1);
+            }
+            return count
+        };
     </script>
 </body>
 
