@@ -3167,7 +3167,28 @@
             }
             return max < 1 ? 0 : max + 2
         };
-      
+        var reorganizeString = function (S) {
+            let len = S.length
+            let half = len % 2 === 0 ? len / 2 : (S.length + 1) / 2;
+            let mp = new Map();
+            let arr = []
+            for (let i = 0; i <= len - 1; i++) {
+                mp.set(S[i], mp.get(S[i]) ? mp.get(S[i]) + 1 : 1)
+                if (mp.get(S[i]) > half) {
+                    return ""
+                }
+            }
+            let odd = -1;
+            let even = -2;
+            mp.forEach((index, str) => {
+                let i = index;
+                while (i--) {
+                    let ind = index <= len / 2 && odd < len - 2 ? odd += 2 : even += 2
+                    arr[ind] = str
+                }
+            })
+            return arr.join("")
+        };
     </script>
 </body>
 
