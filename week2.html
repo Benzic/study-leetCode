@@ -3148,7 +3148,26 @@
             }
             return dp[N]
         };
-    
+        var lenLongestFibSubseq = function (A) {
+            let max = 0
+            for (let i = 0; i <= A.length - 1; i++) {
+                for (let j = i + 1; j <= A.length - 1; j++) {
+                    let n1 = A[i]
+                    let n2 = A[j]
+                    let count = 0;
+                    let sum = n1 + n2;
+                    while (A.includes(sum)) {
+                        n1 = n2;
+                        n2 = sum;
+                        sum = n1 + n2;
+                        count += 1
+                    }
+                    max = count > max ? count : max
+                }
+            }
+            return max < 1 ? 0 : max + 2
+        };
+      
     </script>
 </body>
 
