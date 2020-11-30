@@ -3102,6 +3102,32 @@
             }
             return count
         };
+        var findDisappearedNumbers = function (nums) {
+            let len = nums.length
+            let arr = []
+            for (let i = 1; i <= len; i++) {
+                if (!nums.includes(i)) {
+                    arr.push(i)
+                }
+            }
+            return arr
+        };
+        var findDisappearedNumbers = function (nums) {
+            let len = nums.length
+            let arr = []
+            for (let i = 0; i <= len - 1; i++) {
+                let index = (nums[i] < 0 ? -nums[i] : nums[i]) - 1
+                if (nums[index] > 0) {
+                    nums[index] = -nums[index]
+                }
+            }
+            for (let i = 0; i <= len - 1; i++) {
+                if (nums[i] > 0) {
+                    arr.push(i + 1)
+                }
+            }
+            return arr
+        };
        
     </script>
 </body>
