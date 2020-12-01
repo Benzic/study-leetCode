@@ -3202,10 +3202,19 @@
             for (let i = 3; i <= nums.length - 1; i++) {
                 dp2[i] = Math.max(dp2[i - 2] + nums[i], dp2[i - 1])
             }
-            console.log(dp, dp2)
-            // return dp[dp.length - 1] > dp2[dp2.length - 1] ? dp[dp.length - 1] : dp2[dp2.length - 1]
+            return dp[dp.length - 1] > dp2[dp2.length - 1] ? dp[dp.length - 1] : dp2[dp2.length - 1]
         };
         console.log(rob([4, 1, 2]))
+        var rob = function (nums) {
+            let len = nums.length
+            if (!len) return 0;
+            if (len === 1) return nums[0]
+            let dp = [nums[0], nums[0] > nums[1] ? nums[0] : nums[1]];
+            for (let i = 2; i <= len - 1; i++) {
+                dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1])
+            }
+            return dp[len - 1]
+        };
     </script>
 </body>
 
