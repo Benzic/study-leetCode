@@ -3234,6 +3234,17 @@
             }
             return [-1, -1]
         };
+        var divisorGame = function (N) {
+            let dp = [true];
+            for (let i = 1; i <= N; i++) {
+                dp[i] = !dp[i - 1]
+            }
+            return dp[N]
+        };
+        var divisorGame = function (N) {
+            return N % 2 === 0;
+        };
+        
     </script>
 </body>
 
