@@ -3244,7 +3244,25 @@
         var divisorGame = function (N) {
             return N % 2 === 0;
         };
-        
+        var rangeSum = function (nums, n, left, right) {
+            let arr = [];
+            for (let i = 0; i <= nums.length - 1; i++) {
+                let sum = nums[i]
+                arr.push(nums[i])
+                for (let j = i + 1; j <= nums.length - 1; j++) {
+                    sum += nums[j]
+                    arr.push(sum)
+                }
+            }
+            arr.sort((a, b) => a - b)
+            let sum = arr[right - 1]
+            while (left < right) {
+                sum += arr[left - 1];
+                left += 1
+            }
+            return sum % 1000000007
+        };
+       
     </script>
 </body>
 
