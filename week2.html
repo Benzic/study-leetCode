@@ -3295,7 +3295,17 @@
             })
             return arr.slice(0, k)
         };
-       
+        var average = function (salary) {
+            let len = salary.length
+            let sum = 0;
+            let index = 0
+            while (index <= len - 1) {
+                sum += salary[index]
+                index++
+            }
+            return (sum - Math.max.apply(null, salary) - Math.min.apply(null, salary)) / (len - 2)
+        };
+
     </script>
 </body>
 
