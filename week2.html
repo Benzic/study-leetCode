@@ -3281,7 +3281,21 @@
             }
             return array
         };
-        
+        var getStrongest = function (arr, k) {
+            let len = arr.length
+            arr.sort((a, b) => a - b);
+            let mid = arr[Math.floor((len - 1) / 2)];
+            arr.sort((a, b) => {
+                if (Math.abs(a - mid) > Math.abs(b - mid) || Math.abs(a - mid) === Math.abs(b - mid) && a >
+                    b) {
+                    return -1
+                } else {
+                    return 1
+                }
+            })
+            return arr.slice(0, k)
+        };
+       
     </script>
 </body>
 
