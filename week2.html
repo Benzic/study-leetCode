@@ -3807,6 +3807,33 @@
             nums.sort((a, b) => b - a);
             return nums[k - 1]
         };
+        var dailyTemperatures = function (T) {
+            let len = T.length
+            let arr = new Array(len).fill(0)
+            for (let i = 0; i <= len - 1; i++) {
+                let j = i + 1;
+                while (T[j] <= T[i]) {
+                    j++
+                }
+                arr[i] = j < len ? j - i : 0
+            }
+            return arr
+        };
+        var dailyTemperatures = function (T) {
+            let len = T.length
+            let arr = new Array(len).fill(0)
+            let stack = []
+            for (let i = len - 1; i >= 0; i--) {
+                while (stack.length && T[i] >= T[stack[stack.length - 1]]) {
+                    stack.pop()
+                }
+                if (stack.length) {
+                    arr[i] = stack[stack.length - 1] - i;
+                }
+                stack.push(i)
+            }
+            return arr
+        };
     </script>
 </body>
 
