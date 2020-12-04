@@ -3860,6 +3860,26 @@
                 return count
             }
         };
+        var sortArray = function (nums) {
+            quickSort(nums, 0, nums.length - 1)
+            return nums
+
+            function quickSort(nums, l, r) {
+                if (l >= r) return;
+                let s = l,
+                    e = r,
+                    pivot = nums[s]; // key == pivot (基准)
+                while (l < r) {
+                    while (l < r && nums[r] >= pivot) --r;
+                    if (l < r) nums[l++] = nums[r];
+                    while (l < r && nums[l] <= pivot) ++l;
+                    if (l < r) nums[r--] = nums[l];
+                }
+                nums[l] = pivot;
+                quickSort(nums, s, l - 1);
+                quickSort(nums, l + 1, e);
+            }
+        };
 
     </script>
 </body>
