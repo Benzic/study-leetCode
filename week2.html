@@ -3880,7 +3880,21 @@
                 quickSort(nums, l + 1, e);
             }
         };
-
+        var productExceptSelf = function (nums) {
+            let len = nums.length
+            let arr = new Array(len).fill(1)
+            let left = 1;
+            let right = 1
+            for (let i = 0; i <= len - 1; i++) {
+                arr[i] = left;
+                left *= nums[i]
+            }
+            for (let j = len - 1; j >= 0; j--) {
+                arr[j] *= right;
+                right *= nums[j]
+            }
+            return arr
+        };
     </script>
 </body>
 
