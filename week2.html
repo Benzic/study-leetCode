@@ -3937,6 +3937,29 @@
             }
             return true
         };
+        var predictPartyVictory = function (senate) {
+            let len = senate.length;
+            let RArr = [];
+            let DArr = [];
+            for (let i = 0; i <= len - 1; i++) {
+                if (senate[i] === "R") {
+                    RArr.push(i)
+                } else {
+                    DArr.push(i)
+                }
+            }
+            while (RArr.length && DArr.length) {
+                if (RArr[0] < DArr[0]) {
+                    RArr.push(RArr[0] + len)
+                } else {
+                    DArr.push(DArr[0] + len)
+                }
+                RArr.shift();
+                DArr.shift();
+            }
+            return RArr.length ? "Radiant" : "Dire"
+        };
+
     </script>
 </body>
 
