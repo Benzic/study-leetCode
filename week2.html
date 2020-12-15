@@ -4051,7 +4051,38 @@
             }
             return stack.length ? stack.join("") : "0"
         };
-
+        var minAddToMakeValid = function (S) {
+            let stackLeft = 0;
+            let stackRight = 0;
+            for (let i = 0; i <= S.length - 1; i++) {
+                if (S[i] === "(") {
+                    stackLeft += 1
+                } else {
+                    if (stackLeft) {
+                        stackLeft -= 1
+                    } else {
+                        stackRight += 1
+                    }
+                }
+            }
+            return stackRight + stackLeft
+        };
+        var minAddToMakeValid = function (S) {
+            let stack = [];
+            for (let i = 0; i <= S.length - 1; i++) {
+                if (stack.length) {
+                    if (S[i] == ")" && stack[stack.length - 1] == "(") {
+                        stack.pop()
+                    } else {
+                        stack.push(S[i])
+                    }
+                } else {
+                    stack.push(S[i])
+                }
+            }
+            return stack.length
+        };
+       
     </script>
 </body>
 
