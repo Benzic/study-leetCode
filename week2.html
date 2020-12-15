@@ -4032,7 +4032,26 @@
             }
             return arr.join("")
         };
-      
+        var removeKdigits = function (num, k) {
+            let stack = [];
+            for (let i = 0; i <= num.length - 1; i++) {
+                let temp = num[i];
+                while (k > 0 && stack.length && temp < stack[stack.length - 1]) {
+                    stack.pop();
+                    k -= 1;
+                }
+                stack.push(temp)
+            }
+            while (k > 0) {
+                stack.pop();
+                k -= 1
+            }
+            while (stack.length && stack[0] === "0") {
+                stack.shift();
+            }
+            return stack.length ? stack.join("") : "0"
+        };
+
     </script>
 </body>
 
