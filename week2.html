@@ -4095,7 +4095,23 @@
             }
             return num
         };
-        
+        var removeOuterParentheses = function (S) {
+            let stack = [];
+            let str = ""
+            for (let i = 0; i <= S.length - 1; i++) {
+                if (S[i] === ")") {
+                    stack.pop();
+                }
+                if (stack.length) {
+                    str += S[i]
+                }
+                if (S[i] === "(") {
+                    stack.push("(")
+                }
+            }
+            return str
+        };
+
     </script>
 </body>
 
