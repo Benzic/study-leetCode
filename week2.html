@@ -4111,7 +4111,18 @@
             }
             return str
         };
-
+        var removeDuplicates = function (S) {
+            let stack = [];
+            for (let i = 0; i <= S.length - 1; i++) {
+                if (stack.length && stack[stack.length - 1] === S[i]) {
+                    stack.pop();
+                } else {
+                    stack.push(S[i])
+                }
+            }
+            return stack.join("")
+        };
+       
     </script>
 </body>
 
