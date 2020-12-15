@@ -3959,7 +3959,21 @@
             }
             return RArr.length ? "Radiant" : "Dire"
         };
-
+        var minSubsequence = function (nums) {
+            let arr = [];
+            nums.sort((a, b) => b - a);
+            let sum = nums.reduce((a, b) => a + b);
+            let curS = 0
+            for (let i = 0; i <= nums.length - 1; i++) {
+                curS += nums[i];
+                arr.push(nums[i])
+                if (curS > sum / 2) {
+                    return arr
+                }
+            }
+            return []
+        };
+       
     </script>
 </body>
 
