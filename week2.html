@@ -4082,7 +4082,20 @@
             }
             return stack.length
         };
-       
+        var maximum69Number = function (num) {
+            let str = num + "";
+            let len = str.length;
+            if (num === 9999) {
+                return 9999
+            }
+            for (let i = 0; i <= len - 1; i++) {
+                if (str[i] === "6") {
+                    return str.substring(0, i) + "9" + str.substring(i + 1, len)
+                }
+            }
+            return num
+        };
+        
     </script>
 </body>
 
