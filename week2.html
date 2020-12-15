@@ -3973,7 +3973,52 @@
             }
             return []
         };
-       
+        var canArrange = function (arr, k) {
+            let len = arr.length
+            let mp = {}
+            for (let i = 0; i <= arr.length - 1; i++) {
+                let value = arr[i] % k;
+                value < 0 && (value += k);
+                !mp[value] && (mp[value] = 0);
+                mp[value] += 1;
+            }
+            if (mp.hasOwnProperty("0") && mp["0"] % 2 != 0) {
+                return false
+            }
+            for (let key in mp) {
+                if (key !== '0') {
+                    if (mp[key] !== mp[k - key]) {
+                        return false
+                    }
+                }
+            }
+            return true
+        };
+        var canArrange = function (arr, k) {
+            let len = arr.length
+            let mp = []
+            for (let i = 0; i <= arr.length - 1; i++) {
+                let value = arr[i] % k;
+                value < 0 && (value += k);
+                !mp[value] && (mp[value] = 0);
+                mp[value] += 1;
+                if (k - value !== value && value !== 0) {
+                    if (mp[k - value] === mp[value]) {
+                        len -= mp[value]
+                        len -= mp[k - value]
+                        delete mp[value]
+                        delete mp[k - value]
+                    }
+                } else {
+                    if (mp[value] % 2 == 0) {
+                        len -= mp[value]
+                        delete mp[value]
+                    }
+                }
+            }
+            return !len ? true : false
+        };
+
     </script>
 </body>
 
