@@ -4122,7 +4122,24 @@
             }
             return stack.join("")
         };
-       
+        var isValid = function (s) {
+            let stack = [];
+            for (let i = 0; i <= s.length - 1; i++) {
+                let len = stack.length
+                if (len >= 2) {
+                    if (stack[len - 2] + stack[len - 1] + s[i] === "abc") {
+                        stack.pop();
+                        stack.pop();
+                    } else {
+                        stack.push(s[i])
+                    }
+                } else {
+                    stack.push(s[i])
+                }
+            }
+            return stack.length === 0
+        };
+        
     </script>
 </body>
 
