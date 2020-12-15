@@ -4139,7 +4139,69 @@
             }
             return stack.length === 0
         };
-        
+        var minRemoveToMakeValid = function (s) {
+            let stack = [];
+            for (let i = 0; i <= s.length - 1; i++) {
+                if (s[i] === "(" || s[i] === ")") {
+                    if (s[i] === "(") {
+                        stack.push("(")
+                    } else {
+                        if (stack.length) {
+                            let index = i;
+                            while (index >= 0) {
+                                if (s[index] === '(') {
+                                    s = s.substring(0, index) + '<' + s.substring(index + 1, s.length)
+                                    break;
+                                }
+                                index -= 1
+                            }
+                            stack.pop()
+                        } else {
+                            s = s.substring(0, i) + "." + s.substring(i + 1, s.length)
+                        }
+                    }
+                }
+            }
+            if (stack.length) {
+                for (let i = 0; i <= s.length - 1; i++) {
+                    if (stack.length) {
+                        if (s[i] === "(") {
+                            stack.pop()
+                            s = s.substring(0, i) + "." + s.substring(i + 1, s.length)
+                        }
+                    }
+                }
+            }
+            for (let i = 0; i <= s.length - 1; i++) {
+                if (s[i] === "<") {
+                    s = s.substring(0, i) + "(" + s.substring(i + 1, s.length)
+                }
+                if (s[i] === ".") {
+                    s = s.substring(0, i) + s.substring(i + 1, s.length)
+                    i = i - 1
+                }
+            }
+            return s
+        };
+        var minRemoveToMakeValid = function (s) {
+            let stack = [];
+            let arr = new Array(s.length).fill(null);
+            for (let i = 0; i <= s.length - 1; i++) {
+                if (s[i] === "(" || s[i] === ")") {
+                    if (s[i] === "(") {
+                        stack.push(i)
+                    } else {
+                        if (stack.length) {
+                            arr[stack.pop()] = "("
+                            arr[i] = ")"
+                        } else {}
+                    }
+                } else {
+                    arr[i] = s[i]
+                }
+            }
+            return arr.filter((item) => item).join("")
+        };
     </script>
 </body>
 
