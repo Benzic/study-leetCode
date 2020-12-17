@@ -4202,6 +4202,19 @@
             }
             return arr.filter((item) => item).join("")
         };
+        var maxProfit = function (prices, fee) {
+            let buy = prices[0] + fee;
+            let profit = 0;
+            for (let i = 0; i <= prices.length - 1; i++) {
+                if (prices[i] + fee < buy) {
+                    buy = prices[i] + fee;
+                } else if (prices[i] > buy) {
+                    profit += prices[i] - buy;
+                    buy = prices[i]
+                }
+            }
+            return profit
+        };
     </script>
 </body>
 
