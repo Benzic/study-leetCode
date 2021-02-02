@@ -4267,6 +4267,25 @@
             }
             return s.length - left
         };
+        var longestOnes = function (A, K) {
+            let len = A.length
+            let array = [0, 0];
+            let left = 0;
+            let right = 0;
+            let max = 0;
+            while (right <= len - 1) {
+                array[A[right]] += 1;
+                if (A[right] === 1) {
+                    max = Math.max(max, array[A[right]]);
+                }
+                if (right - left + 1 > max + K) {
+                    array[A[left]] -= 1;
+                    left += 1;
+                }
+                right += 1
+            }
+            return max === 0 ? K : len - left
+        };
     </script>
 </body>
 
