@@ -2173,6 +2173,15 @@
             }
             return ""
         };
+        var findTheDifference = function (s, t) {
+            let res = 0;
+            let len = s.length > t.length ? s.length : t.length
+            for (let i = 0; i <= len - 1; i++) {
+                res ^= s.charCodeAt(i);
+                res ^= t.charCodeAt(i);
+            }
+            return String.fromCharCode(res)
+        };
         var hIndex = function (citations) {
             citations.sort((a, b) => {
                 return a - b
@@ -4214,6 +4223,49 @@
                 }
             }
             return profit
+        };
+        var minCostClimbingStairs = function (cost) {
+            let dp = [];
+            dp[0] = cost[0];
+            dp[1] = cost[1];
+            for (let i = 2; i < cost.length; i++) {
+                dp[i] = Math.min(dp[i - 1], dp[i - 2]) + cost[i]
+            }
+            return Math.min(dp[dp.length - 1], dp[dp.length - 2]);
+        };
+        var candy = function (ratings) {
+            let arr = new Array(ratings.length).fill(1)
+            for (let i = 1; i <= ratings.length - 1; i++) {
+                if (ratings[i] > ratings[i - 1]) {
+                    arr[i] = arr[i - 1] + 1
+                }
+            }
+            for (let i = ratings.length - 2; i >= 0; i--) {
+                if (ratings[i] > ratings[i + 1]) {
+                    arr[i] = Math.max(arr[i], arr[i + 1] + 1)
+                }
+            }
+            return arr.reduce((sum, item) => {
+                return sum + item
+            })
+        };
+        var characterReplacement = function (s, k) {
+            let left = 0;
+            let right = 0;
+            let max = 0;
+            let array = new Array(26).fill(0)
+            while (right <= s.length - 1) {
+                let code = s[right].charCodeAt() - 65;
+                array[code] += 1;
+                max = Math.max(max, array[code]);
+                if (right - left + 1 > max + k) {
+                    let _code = s[left].charCodeAt() - 65;
+                    array[_code] -= 1;
+                    left += 1
+                }
+                right += 1
+            }
+            return s.length - left
         };
     </script>
 </body>
